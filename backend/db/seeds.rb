@@ -60,7 +60,7 @@ ApplicationRecord.transaction do
     end
 
     puts "Creating Games..."
-    teams = Team.all.to_a.combination(2).each do |pair|
+    teams = Team.all.to_a[1..-1].combination(2).each do |pair|
         Game.create!({
             date: Faker::Date.between(from: 1.months.ago, to: Date.today),
             home_team_id: pair[0].id,
