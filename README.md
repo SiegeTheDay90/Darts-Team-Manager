@@ -14,10 +14,8 @@
   <li>Can list "preffered games" and time slots.</li>
 </ul>
 
-## Schema
-# Database Schema
-
-## `users`
+## Database Schema
+### `users`
 | column name       | data type | details                   |
 |:------------------|:---------:|:--------------------------|
 | `id`              | integer   | not null, primary key     |
@@ -34,7 +32,7 @@
 + index on `session_token, unique: true`
 + `has_many teams`
   
-## `teams`
+### `teams`
 | column name          | data type | details                        |
 |:---------------------|:---------:|:-------------------------------|
 | `id`                 | integer   | not null, primary key          |
