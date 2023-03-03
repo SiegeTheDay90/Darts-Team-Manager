@@ -11,14 +11,14 @@ export const storeErrors = (errors) => dispatch => {
 
 const initialState = JSON.parse(sessionStorage.getItem("errors"))  || {}
   
-  const errorsReducer = (state = initialState, action) => {
-    switch (action.type) {
-      case SET_ERRORS:
-        return action.payload.errors;
-  
-      default:
-        return state;
-    }
-  };
+const errorsReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case SET_ERRORS:
+      return action.payload.errors;
 
-  export default errorsReducer;
+    default:
+      return state;
+  }
+};
+
+export default errorsReducer;

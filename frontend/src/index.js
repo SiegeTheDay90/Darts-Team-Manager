@@ -19,7 +19,6 @@ if (process.env.NODE_ENV !== 'production') {
   window.csrfFetch = csrfFetch;
 }
 
-debugger
 
 function Root() {
   return (

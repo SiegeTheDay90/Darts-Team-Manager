@@ -1,11 +1,8 @@
-import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import SessionInfo from "../Session/Info.jsx";
-import LoginFormModal from "../Session/LoginFormModal.jsx";
-import NavCategories from "./NavCategories.jsx";
-import SearchBar from "../Search/SearchBar.jsx";
-import CartButton from "./CartButton.jsx";
-import './styles/Navigation.css'
+import {Link} from 'react-router-dom'
+// import LoginFormModal from "../Session/LoginFormModal.jsx";
+import './Navigation.css'
 
 
 const Navigation = () => {
@@ -14,24 +11,18 @@ const Navigation = () => {
   
   return (
     <nav className="navigation">
-
-      <div className="navrow">
-        <Link to="/" tabIndex="0">
-          <img className="logo" alt="mainLogo" src="https://i.ibb.co/5cm3p8n/logo.png"/>
-        </Link>
-
-        <SearchBar />
-
-        <SessionInfo session = {session}/> 
-
-        <CartButton session = {session}/>
-      </div>
-
-      <NavCategories />
-      
-      <LoginFormModal />
+      <Link to="/">
+        <img src="https://i.ibb.co/rG5Wjqh/Logo.png"
+        alt="Logo"
+        id="Logo"/>
+      </Link>
+      <h1>Team Connect</h1>
+      <SessionInfo session = {session}/> 
+    
+      {/* <LoginFormModal /> */}
     </nav>
   )
 }
 
 export default Navigation;
+
