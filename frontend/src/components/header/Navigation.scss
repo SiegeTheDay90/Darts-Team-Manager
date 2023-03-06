@@ -1,0 +1,26 @@
+@use '../../App.scss' as *;
+
+.navigation {
+    height: 100px;
+    width: 100vw;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+    background: linear-gradient(to right, $dark-green, $green 152px);
+    h1 {
+        position: relative;
+        justify-self: flex-end;
+        display: inline;
+        margin: auto 0;
+        font-size: 175%;
+
+    }
+}
+
+
+#Logo {
+    height: 80px;
+    padding-left: 10px;
+    display: inline;
+}

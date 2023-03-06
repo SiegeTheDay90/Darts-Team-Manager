@@ -2,6 +2,7 @@ import csrfFetch from "./csrf.js";
 
 const ADD_TEAM = 'teams/addTeam';
 const LIST_TEAMS = 'teams/listTeams';
+const SET_CURRENT_USER = 'session/setCurrentUser';
 
 
 const addTeam = (payload) => ({
@@ -35,11 +36,14 @@ const initialState = JSON.parse(sessionStorage.getItem("teams")) || {}
   const teamsReducer = (state = initialState, action) => {
     switch (action.type) {
       case ADD_TEAM:
-        return {...state, [action.payload.team.id] : action.payload.team}
+        return {...state, [action.payload.team.id] : action.payload.team }
 
       case LIST_TEAMS:
         return {...state, ...action.payload}
-  
+
+      case SET_CURRENT_USER:
+        return { ...state, [action.payload.team.id]:action.payload.team };
+
       default:
         return state;
     }

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_29_170727) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_04_145640) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -38,7 +38,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_29_170727) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "username", null: false
+    t.string "firstname", null: false
     t.string "email", null: false
     t.boolean "is_manager", default: false, null: false
     t.string "password_digest"
@@ -46,8 +46,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_29_170727) do
     t.integer "team_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "lastname"
     t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["username"], name: "index_users_on_username", unique: true
+    t.index ["firstname"], name: "index_users_on_firstname", unique: true
   end
 
   add_foreign_key "games", "teams", column: "away_team_id"

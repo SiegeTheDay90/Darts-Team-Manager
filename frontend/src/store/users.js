@@ -4,6 +4,8 @@ import { storeErrors } from "./errors.js";
 
 const ADD_USER = 'users/add'
 const LIST_USERS = 'users/list'
+const SET_CURRENT_USER = 'session/setCurrentUser';
+
 
 
 const addUser = (user) => ({
@@ -42,6 +44,9 @@ const initialState = JSON.parse(sessionStorage.getItem("users")) || {}
 
         case LIST_USERS:
             return action.users
+
+        case SET_CURRENT_USER:
+            return {...state, ...action.payload.users};
         
   
         default:

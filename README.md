@@ -9,9 +9,9 @@
 
 ### Player-View
 <ul>
-  <li>Players can Log In to view their team(s)</li>
-  <li>Can "check-in" to reserve a spot for game-day</li>
-  <li>Can list "preffered games" and time slots.</li>
+  <li>Successful Login/Signup redirects to MyTeam page.</li>
+  <li>MyTeam page shows current wins, losses, schedule, & NextGame</li>
+  <li>NextGame has a list of play-slots. Users can click play-slots to reserve. Users can also queue up for a play-slot thati s already reserved.
 </ul>
 
 ## Database Schema

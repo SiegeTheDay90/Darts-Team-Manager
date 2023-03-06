@@ -8,6 +8,7 @@
 #  away_team_id    :integer          not null
 #  winning_team_id :integer
 #  score           :string
+#  reserved        :integer          default([]), is an Array
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #

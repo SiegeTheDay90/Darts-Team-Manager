@@ -28,7 +28,8 @@ ApplicationRecord.transaction do
 
     puts "Creating demo user..."
     User.create!({
-        username: 'Demo',
+        firstname: 'Demo',
+        lastname: 'User',
         email: 'demo@user.io',
         password: 'password',
         team_id: 1
@@ -37,7 +38,8 @@ ApplicationRecord.transaction do
     puts"Creating 23 users..."
     23.times do
         User.create!({
-            username: Faker::Internet.unique.username,
+            firstname: Faker::Name.first_name,
+            lastname: Faker::Name.last_name,
             email: Faker::Internet.unique.safe_email,
             password: 'password',
             team_id: 1

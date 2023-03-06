@@ -3,7 +3,8 @@
 # Table name: users
 #
 #  id              :bigint           not null, primary key
-#  username        :string           not null
+#  firstname       :string           not null
+#  lastname        :string
 #  email           :string           not null
 #  is_manager      :boolean          default(FALSE), not null
 #  password_digest :string
@@ -13,10 +14,10 @@
 #  updated_at      :datetime         not null
 #
 class User < ApplicationRecord
-  validates :username, :email, :password_digest, :session_token, presence: {message: "can't be blank."}
-  validates :email, :password_digest, :session_token, uniqueness: true
+  validates :firstname, :lastname, :email, :password_digest, :session_token, presence: {message: "can't be blank."}
+  validates :email, :password_digest, :session_token, uniqueness: {message: "is already in use."}
   validates :password, length: {in: 8..12, message: "must be between 8 and 12 characters."}, allow_nil: true
-  validates :username, format: { without: URI::MailTo::EMAIL_REGEXP, message:  "can't be an email." }
+  validates :firstname, :lastname, format: { without: URI::MailTo::EMAIL_REGEXP, message:  "can't be an email." }
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP, message: "has invalid format."}#email: {mode: :strict, require_fqdn: true, message: "must be a valid email"}
 
   belongs_to(

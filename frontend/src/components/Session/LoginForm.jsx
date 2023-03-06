@@ -1,8 +1,9 @@
 import {useState, useEffect} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import {login, signup} from '../../store/session.js';
 import { storeErrors } from '../../store/errors.js';
-import './LoginForm.css';
+import './LoginForm.scss';
 
 const LoginForm = () => {
     const dispatch = useDispatch();
@@ -10,11 +11,17 @@ const LoginForm = () => {
     const errors = useSelector(state => state.errors);
     const [credential, setCredential] = useState('');
     const [password, setPassword] = useState('');
-    const [userName, setUserName] = useState('');
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
+    const history = useHistory();
 
     
     const [formType, setFormType] = useState('login');
+
+    if(sessionUser){
+        history.push('/myteams')
+    }
 
 
     useEffect(() => {
@@ -27,9 +34,9 @@ const LoginForm = () => {
                     inputField = document.getElementById('InputEmail');
                     errorContainer = document.getElementById('emailError');
                     break;
-                case "Usern":
-                    inputField = document.getElementById('InputUserName');
-                    errorContainer = document.getElementById('userNameError');
+                case "First":
+                    inputField = document.getElementById('InputFirstName');
+                    errorContainer = document.getElementById('firstNameError');
                     break;
                 case "Passw":
                     inputField = document.getElementById('InputPassword');
@@ -45,7 +52,7 @@ const LoginForm = () => {
                 inputField.style.border = "1px solid #bb0000";
             }
         }
-    }, [errors, sessionUser]);
+    }, [errors]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -58,7 +65,7 @@ const LoginForm = () => {
                 dispatch(login(user));
             }
         } else if(formType==='signup'){
-            const user = {firstName, email, password};
+            const user = {firstName, lastName, email, password};
             dispatch(signup(user));
         }
     }
@@ -69,55 +76,46 @@ const LoginForm = () => {
     }
 
     return(
-        <dialog id="OverlayContainer">
-        <button id="CloseModalButton" onClick={closeModal}>×</button>
+        <>
         {formType==='login' && 
-        <div id="LoginModal">
-            <div className="ModalDiv">
-                <h3>Sign in</h3>
-                <button className='ModalButton-R' onClick={() => setFormType('signup')}>Register</button>
+        <div id="LoginForm">
+            <div className="FormDiv">
+                <h2>Sign in</h2><br/>
+                <button className='button-small' onClick={() => setFormType('signup')}>Register</button>
             </div>
 
-            <form onSubmit={handleSubmit} className="ModalForm">
+            <form onSubmit={handleSubmit} className="Form">
 
                 <div className="InputContainer">
-                    <label htmlFor="InputEmail">Email address</label>
-                    <input id="InputEmail" value={credential} onChange={(e) => setCredential(e.target.value)} className="ModalInput" require="true"/>
+                    <label htmlFor="InputEmail">Email</label>
+                    <input id="InputEmail" value={credential} onChange={(e) => setCredential(e.target.value)} className="Input" require="true"/>
                     <span className="error" id="emailError"></span>
                 </div>
 
                 <div className="InputContainer">
                 <label htmlFor="InputPassword">Password</label>
-                <input id="InputPassword" type="password" value={password} onChange={(e) => setPassword(e.target.value)} className="ModalInput" />
+                <input id="InputPassword" type="password" value={password} onChange={(e) => setPassword(e.target.value)} className="Input" />
                 <span className="error" id="passwordError"></span>
                 </div>
-                {/* <div className="ModalDiv">
-
-                    <div className="StaySignedIn"><input type="checkbox" id="ModalCheck"/> Stay signed in</div> 
-
-                    <div style={{'fontSize': '12px', 'textDecoration': 'underline'}}>Forgot your password?</div>
-
-                </div> */}
-                <input className="ModalButton-S" type="submit" value="Sign in" disabled={!password}/>
+                <div className="button-container">
+                    <input className="button-large" type="submit" value="Sign in" disabled={!password}/>
+                    <input className="button-large demo-button" type="button" value="Demo User" onClick={demoClick}/>
+                </div>
             </form>
-            <div style={{'fontSize': '12px', 'textDecoration': 'underline'}}>Trouble signing in?</div>
-            <div style={{'fontSize': '14px'}}><hr/>OR</div>
-            <input className="ModalButton-S" type="button" value="Demo User" onClick={demoClick}/>
-
         </div>}
         {formType==='signup' && 
-        <div id="LoginModal">
-        <div className="ModalDiv">
+        <div id="LoginForm">
+        <div className="FormDiv">
             <h3>Create your account</h3>
         </div>
-        <div className="ModalDiv">
+        <div className="FormDiv">
             <h4>Registration is easy.</h4>
         </div>
         
-        <form onSubmit={handleSubmit} className="ModalForm">
+        <form onSubmit={handleSubmit} className="Form">
             <div className="InputContainer">
                 <label htmlFor="InputEmail">Email <span style={{color: "#dd0000"}}>*</span></label>
-                <input id="InputEmail" value={email} onChange={(e) => setEmail(e.target.value)} className="ModalInput"/>
+                <input id="InputEmail" value={email} onChange={(e) => setEmail(e.target.value)} className="Input"/>
                 <span className="error" id="emailError"></span>
 
 
@@ -126,21 +124,27 @@ const LoginForm = () => {
 
             <div className="InputContainer">
                 <label htmlFor="InputFirstName">First name <span style={{color: "#dd0000"}}>*</span></label>
-                <input id="InputFirstName" value={firstName} onChange={(e) => setFirstName(e.target.value)} className="ModalInput"/>
+                <input id="InputFirstName" value={firstName} onChange={(e) => setFirstName(e.target.value)} className="Input"/>
                 <span className="error" id="firstNameError"></span>
             </div>
 
             <div className="InputContainer">
+                <label htmlFor="InputLastName">Last name <span style={{color: "#dd0000"}}>*</span></label>
+                <input id="InputLastName" value={lastName} onChange={(e) => setLastName(e.target.value)} className="Input"/>
+                <span className="error" id="lastNameError"></span>
+            </div>
+
+            <div className="InputContainer">
                 <label htmlFor="InputPassword">Password <span style={{color: "#dd0000"}}>*</span></label>
-                <input id="InputPassword" type="password" value={password} onChange={(e) => setPassword(e.target.value)} className="ModalInput"/>
+                <input id="InputPassword" type="password" value={password} onChange={(e) => setPassword(e.target.value)} className="Input"/>
                 <span className="error" id="passwordError"></span>
             </div>
 
 
-            <input type="submit" value="Register" className="ModalButton-S" disabled={!password || !firstName || !email}/>
+            <input type="submit" value="Register" className="button-large" disabled={!password || !firstName || !email}/>
         </form>
         </div>}
-        </dialog>
+        </>
     )
 }
 

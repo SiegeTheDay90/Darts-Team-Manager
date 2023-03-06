@@ -2,13 +2,12 @@ import { useSelector } from "react-redux";
 import SessionInfo from "../Session/Info.jsx";
 import {Link} from 'react-router-dom'
 // import LoginFormModal from "../Session/LoginFormModal.jsx";
-import './Navigation.css'
+import './Navigation.scss'
 
 
 const Navigation = () => {
 
-  const session = useSelector(state => state.session)
-  
+  const session = useSelector(state => state.session)  
   return (
     <nav className="navigation">
       <Link to="/">
@@ -17,9 +16,8 @@ const Navigation = () => {
         id="Logo"/>
       </Link>
       <h1>Team Connect</h1>
-      <SessionInfo session = {session}/> 
+      {session.user && <SessionInfo session = {session}/> }
     
-      {/* <LoginFormModal /> */}
     </nav>
   )
 }

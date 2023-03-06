@@ -3,11 +3,8 @@ import { createRoot } from 'react-dom/client'
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import csrfFetch, { restoreCSRF } from './store/csrf';
-// import { restoreSession } from './store/session';
+import { restoreSession } from './store/session';
 import configureStore from './store';
-// import * as sessionActions from './store/session';
-// import * as userActions from './store/users';
-// import * as shopActions from './store/shops';
 import App from './App.js';
 import './index.css';
 
@@ -39,11 +36,10 @@ const renderApp = () => {
 
 }
 
-// restoreSession();
+restoreSession();
 
 if (sessionStorage.getItem('X-CSRF-Token') === null) {
-  // restoreCSRF().then(renderApp);
+  restoreCSRF().then(renderApp);
 } else {
-  // renderApp();
+  renderApp();
 }
-renderApp();

@@ -93,12 +93,12 @@ const LoginFormModal = () => {
         <button id="CloseModalButton" onClick={closeModal}>×</button>
         {formType==='login' && 
         <div id="LoginModal">
-            <div className="ModalDiv">
+            <div className="FormDiv">
                 <h3>Sign in</h3>
-                <button className='ModalButton-R' onClick={() => setFormType('signup')}>Register</button>
+                <button className='button-small' onClick={() => setFormType('signup')}>Register</button>
             </div>
 
-            <form onSubmit={handleSubmit} className="ModalForm">
+            <form onSubmit={handleSubmit} className="Form">
 
                 <div className="InputContainer">
                     <label htmlFor="InputEmail">Email address</label>
@@ -111,30 +111,30 @@ const LoginFormModal = () => {
                 <input id="InputPassword" type="password" value={password} onChange={(e) => setPassword(e.target.value)} className="ModalInput" />
                 <span className="error" id="passwordError"></span>
                 </div>
-                {/* <div className="ModalDiv">
+                {/* <div className="FormDiv">
 
                     <div className="StaySignedIn"><input type="checkbox" id="ModalCheck"/> Stay signed in</div> 
 
                     <div style={{'fontSize': '12px', 'textDecoration': 'underline'}}>Forgot your password?</div>
 
                 </div> */}
-                <input className="ModalButton-S" type="submit" value="Sign in" disabled={!password}/>
+                <input className="button-large" type="submit" value="Sign in" disabled={!password}/>
             </form>
             <div style={{'fontSize': '12px', 'textDecoration': 'underline'}}>Trouble signing in?</div>
             <div style={{'fontSize': '14px'}}><hr/>OR</div>
-            <input className="ModalButton-S" type="button" value="Demo User" onClick={demoClick}/>
+            <input className="button-large" type="button" value="Demo User" onClick={demoClick}/>
 
         </div>}
         {formType==='signup' && 
         <div id="LoginModal">
-        <div className="ModalDiv">
+        <div className="FormDiv">
             <h3>Create your account</h3>
         </div>
-        <div className="ModalDiv">
+        <div className="FormDiv">
             <h4>Registration is easy.</h4>
         </div>
         
-        <form onSubmit={handleSubmit} className="ModalForm">
+        <form onSubmit={handleSubmit} className="Form">
             <div className="InputContainer">
                 <label htmlFor="InputEmail">Email <span style={{color: "#dd0000"}}>*</span></label>
                 <input id="InputEmail" value={email} onChange={(e) => setEmail(e.target.value)} className="ModalInput"/>
@@ -157,7 +157,7 @@ const LoginFormModal = () => {
             </div>
 
 
-            <input type="submit" value="Register" className="ModalButton-S" disabled={!password || !firstName || !email}/>
+            <input type="submit" value="Register" className="button-large" disabled={!password || !firstName || !email}/>
         </form>
         </div>}
         </dialog>

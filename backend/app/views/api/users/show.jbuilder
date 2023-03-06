@@ -1,7 +1,9 @@
 json.set! @user.id do
     json.extract!(
         @user, 
-        :username, 
+        :firstname,
+        :lastname,
+        :email,
         :team_id
     )
 end

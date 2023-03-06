@@ -25,7 +25,7 @@ dialog::backdrop {
     box-shadow: 0 0 20px #00000080;
 }
 
-.ModalDiv {
+.FormDiv {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -33,7 +33,7 @@ dialog::backdrop {
     margin: 0 0 5px 0;
 }
 
-.ModalForm {
+.Form {
     display: flex;
     flex-direction: column;
     align-items:flex-start;
@@ -45,12 +45,12 @@ label {
     font-weight: bolder;
 }
 
-.ModalDiv .StaySignedIn {
+.FormDiv .StaySignedIn {
     display: flex;
     align-items: center;
 }
 
-.ModalInput {
+.Input {
     width: 90%;
     padding: 15px;
     border: 1px solid #cccccc;
@@ -68,7 +68,7 @@ label {
     margin-bottom: 20px;
 }
 
-.ModalButton-R {
+.button-small {
     border-radius: 25px;
     background: white;
     color: black;
@@ -78,7 +78,7 @@ label {
     transition: 0.2s;
 }
 
-.ModalButton-R:hover {
+.button-small:hover {
     background: #eeeeee;
 }
 
@@ -88,7 +88,7 @@ label {
     color: #ae0000;
 }
 
-.ModalButton-S {
+.button-large {
     border-radius: 25px;
     background: #222222;
     color: white;
@@ -99,12 +99,12 @@ label {
     border: none;
 }
 
-.ModalButton-S:disabled {
+.button-large:disabled {
     background: #555555;
     cursor: not-allowed;
 }
 
-.ModalButton-R, .ModalButton-S {
+.button-small, .button-large {
     cursor: pointer;
 }
 
