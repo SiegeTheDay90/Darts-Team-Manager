@@ -16,7 +16,7 @@ class Api::SessionsController < ApplicationController
           render :show
         else
           @user = nil
-          render json: {errors: ["Username or Password was incorrect"], status: 422}
+          render json: {errors: ["Email or Password was incorrect"]}, status: 422
         end
     end
 
@@ -26,9 +26,9 @@ class Api::SessionsController < ApplicationController
         if user
           user.reset_session_token!
           session['_darts_manager_session'] = nil
-          render json: {messages: ['Successful'], status: 200}
+          render json: {messages: ['Successful']}, status: 200
         else
-          render json: {errors: ['Unsuccessful'], status: 422}
+          render json: {errors: ['Unsuccessful']}, status: 422
         end
     end
   end

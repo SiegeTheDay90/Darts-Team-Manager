@@ -16,10 +16,18 @@ class Team < ApplicationRecord
     validates :name, presence: true, uniqueness: true
     validates :sponsor, :manager_id, presence: true, allow_nil: true
 
-    # before_validation :ensure_name
+    before_validation :ensure_name
 
     def ensure_name
         self.name ||= `#{self.sponsor} #{self.id}`
+    end
+
+    def games
+        return self.away_games + self.home_games
+    end
+
+    def next_game
+        games.reject{|game| Date.today() - game.date > 0}.sort_by{|game| game.date}.first
     end
 
     has_many(
