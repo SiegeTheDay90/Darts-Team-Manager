@@ -42,7 +42,7 @@ const initialState = JSON.parse(sessionStorage.getItem("teams")) || {}
         return {...state, ...action.payload}
 
       case SET_CURRENT_USER:
-        return { ...state, [action.payload.team.id]:action.payload.team };
+        return { ...state, ...action.payload.teams };
 
       default:
         return state;

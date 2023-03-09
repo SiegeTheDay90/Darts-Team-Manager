@@ -27,7 +27,10 @@ class Team < ApplicationRecord
     end
 
     def next_game
-        games.reject{|game| Date.today() - game.date > 0}.sort_by{|game| game.date}.first
+        last_game = games.sort_by{|game| game.date}.last
+        next_game = games.reject{|game| Date.today() - game.date > 0}.sort_by{|game| game.date}.first
+
+        return next_game ? next_game : last_game
     end
 
     has_many(

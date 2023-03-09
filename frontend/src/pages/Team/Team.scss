@@ -1,0 +1,28 @@
+.main-header {
+    align-self: flex-start;
+    margin: 3% 0 0 5%;
+    width: 50%;
+    overflow: hidden;
+    .record {
+        display: block;
+        padding-bottom: 5px;
+        width:fit-content;
+    }
+    li {
+        margin-top: 5px;
+        font-size: smaller;
+        position: relative;
+        padding-left: 10px;
+        font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    }
+    #members-list {
+        display: block;
+        border: 1px solid red;
+    }
+}
+
+.main-content{
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    align-self: flex-start;
+    margin: 3% 5%;
+}

@@ -1,7 +1,6 @@
 import { useSelector } from "react-redux";
-import SessionInfo from "../Session/Info.jsx";
+import SessionInfo from "./Info.jsx";
 import {Link} from 'react-router-dom'
-// import LoginFormModal from "../Session/LoginFormModal.jsx";
 import './Navigation.scss'
 
 

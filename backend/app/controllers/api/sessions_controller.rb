@@ -13,6 +13,7 @@ class Api::SessionsController < ApplicationController
         @user = User.find_by_credentials(session_params[:credential], session_params[:password])
         if @user
           login!(@user)
+          @teams = Team.all[1..-1]
           render :show
         else
           @user = nil

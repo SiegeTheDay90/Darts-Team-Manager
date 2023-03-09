@@ -2,6 +2,8 @@ import csrfFetch from "./csrf.js";
 
 const ADD_GAME = 'games/addGame';
 const LIST_GAMES = 'games/listGames';
+const SET_CURRENT_USER = 'session/setCurrentUser';
+
 
 
 const addGame = (payload) => ({
@@ -43,6 +45,9 @@ const initialState = JSON.parse(sessionStorage.getItem("games")) || {}
 
       case LIST_GAMES:
         return {...state, ...action.payload}
+
+      case SET_CURRENT_USER:
+          return { ...state, ...action.payload.games };
   
       default:
         return state;

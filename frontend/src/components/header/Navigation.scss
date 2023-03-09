@@ -1,10 +1,10 @@
 @use '../../App.scss' as *;
 
 .navigation {
+    position: relative;
     height: 100px;
     width: 100vw;
     display: flex;
-    flex-wrap: wrap;
     justify-content: flex-start;
     align-items: center;
     background: linear-gradient(to right, $dark-green, $green 152px);
@@ -14,13 +14,5 @@
         display: inline;
         margin: auto 0;
         font-size: 175%;
-
     }
-}
-
-
-#Logo {
-    height: 80px;
-    padding-left: 10px;
-    display: inline;
 }
