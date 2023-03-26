@@ -13,17 +13,38 @@ ApplicationRecord.transaction do
     Game.destroy_all
     User.destroy_all
     Team.destroy_all
+    Venue.destroy_all
 
     puts "Resetting primary keys..."
     ApplicationRecord.connection.reset_pk_sequence!('users')
     ApplicationRecord.connection.reset_pk_sequence!('teams')
     ApplicationRecord.connection.reset_pk_sequence!('games')
+    ApplicationRecord.connection.reset_pk_sequence!('venues')
 
-    puts "Creating Null Team..."
-    Team.create!({
-        name: "null_team",
-        sponsor: nil,
-        manager_id: nil
+    # puts "Creating Null Team..."
+    # Team.create!({
+    #     name: "null_team",
+    #     sponsor_id: nil,
+    #     manager_id: nil
+    # })
+
+
+    puts "Creating Venues..."
+    Venue.create!({
+        address: "3718 28th Ave, Long Island City, NY 11103",
+        name: "Irish Rover"
+    })
+    Venue.create!({
+        address: "2567 Steinway St, Astoria, NY 11103",
+        name: "Sissy McGinty's"
+    })
+    Venue.create!({
+        address: "47-22 30th Ave., Queens, NY 11103",
+        name: "Shillelagh"
+    })
+    Venue.create!({
+        address: "41-04 31st Ave, Queens, NY 11103",
+        name: "The Local"
     })
 
     puts "Creating demo user..."
@@ -32,7 +53,7 @@ ApplicationRecord.transaction do
         lastname: 'User',
         email: 'demo@user.io',
         password: 'password',
-        team_id: 1
+        team_id: nil
     })
 
     puts"Creating 23 users..."
@@ -42,22 +63,21 @@ ApplicationRecord.transaction do
             lastname: Faker::Name.last_name,
             email: Faker::Internet.unique.safe_email,
             password: 'password',
-            team_id: 1
+            team_id: nil
         })
     end
 
     puts "Creating Teams..."
     (1..4).each do |i|
         Team.create!({
-            name: "Team #{i}",
-            sponsor: "Sponsor #{i}",
+            sponsor_id: i,
             manager_id: i
         })
     end
     require "byebug"
     puts "Assigning Teams..."
     User.all.each_with_index do |user, idx|
-        user.team_id = (idx % 4) + 2
+        user.team_id = (idx % 4) + 1
         user.save!
     end
 
@@ -92,7 +112,7 @@ ApplicationRecord.transaction do
     end
     puts "Creating a future game..."
     Game.create!({
-        date: Date.new(2023, 2, 14),
+        date: Date.new(2023, 12, 25),
         home_team_id: 2,
         away_team_id: 3,
         winning_team_id: nil,

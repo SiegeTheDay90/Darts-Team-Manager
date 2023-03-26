@@ -14,12 +14,12 @@
 #
 class Team < ApplicationRecord
     validates :name, presence: true, uniqueness: true
-    validates :sponsor, :manager_id, presence: true, allow_nil: true
+    # validates :sponsor_id, :manager_id
 
     before_validation :ensure_name
 
     def ensure_name
-        self.name ||= `#{self.sponsor} #{self.id}`
+        self.name ||= "#{self.sponsor.name} #{self.sponsor.teams.length + 1}"
     end
 
     def games
@@ -32,6 +32,7 @@ class Team < ApplicationRecord
 
         return next_game ? next_game : last_game
     end
+
 
     has_many(
         :players,
