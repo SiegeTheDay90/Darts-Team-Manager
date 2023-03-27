@@ -24,7 +24,9 @@ const CheckInForm = ({game}) => {
                     <label>
                         <input type="checkbox" className="checkin-box" name="reserved" />I'm in
                     </label>
-                    <div className="round-div"><div className="round-header">Round 1</div>
+                    
+                    <div className="round-div">
+                    <details><summary>Round 1</summary>
                         <label>
                             <input type="checkbox" className="checkin-box" name="games[1]" />301 Singles
                         </label><br/>
@@ -37,8 +39,10 @@ const CheckInForm = ({game}) => {
                         <label>
                             <input type="checkbox" className="checkin-box" name="games[4]" />501 Doubles
                         </label>
+                    </details>
                     </div>
-                    <div className="round-div"><div className="round-header">Round 2</div>
+                    <div className="round-div">
+                        <details><summary>Round 2</summary>
                         <label>
                             <input type="checkbox" className="checkin-box" name="games[5]" />Cricket NP
                         </label><br/>
@@ -51,8 +55,10 @@ const CheckInForm = ({game}) => {
                         <label>
                             <input type="checkbox" className="checkin-box" name="games[8]" />Cricket Doubles
                         </label>
+                        </details>
                     </div>
-                    <div className="round-div"><div className="round-header">Round 3</div>
+                    <div className="round-div">
+                        <details><summary>Round 3</summary>
                         <label>
                             <input type="checkbox" className="checkin-box" name="games[9]" />601 Triples
                         </label><br/>
@@ -62,8 +68,10 @@ const CheckInForm = ({game}) => {
                         <label>
                             <input type="checkbox" className="checkin-box" name="games[11]" />601 Triples
                         </label>
+                        </details>
                     </div>
-                    <div className="round-div"><div className="round-header">Round 4</div>
+                    <div className="round-div">
+                        <details><summary>Round 4</summary>
                         <label>
                             <input type="checkbox" className="checkin-box" name="games[12]" />501 Doubles
                         </label><br/>
@@ -76,8 +84,10 @@ const CheckInForm = ({game}) => {
                         <label>
                             <input type="checkbox" className="checkin-box" name="games[14]" />501 Doubles
                         </label>
+                        </details>
                     </div>
-                    <div className="round-div"><div className="round-header">Round 5</div>
+                    <div className="round-div">
+                        <details><summary>Round 5</summary>
                         <label>
                             <input type="checkbox" className="checkin-box" name="games[15]" />Cricket Doubles
                         </label><br/>
@@ -90,8 +100,10 @@ const CheckInForm = ({game}) => {
                         <label>
                             <input type="checkbox" className="checkin-box" name="games[18]" />Cricket Doubles
                         </label>
+                        </details>
                     </div>
-                    <div className="round-div"><div className="round-header">Round 6</div>
+                    <div className="round-div">
+                        <details><summary>Round 6</summary>
                         <label>
                             <input type="checkbox" className="checkin-box" name="games[19]" />601 Triples
                         </label><br/>
@@ -101,6 +113,7 @@ const CheckInForm = ({game}) => {
                         <label>
                             <input type="checkbox" className="checkin-box" name="games[21]" />601 Triples
                         </label>
+                        </details>
                     </div>
                 </form>
             </div>

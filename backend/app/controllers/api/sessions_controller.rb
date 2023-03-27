@@ -3,6 +3,7 @@ class Api::SessionsController < ApplicationController
     def show
         if current_user
           @user = current_user
+          @teams = Team.all
           render :show
         else
           render json: {user: nil}
@@ -13,7 +14,7 @@ class Api::SessionsController < ApplicationController
         @user = User.find_by_credentials(session_params[:credential], session_params[:password])
         if @user
           login!(@user)
-          @teams = Team.all[1..-1]
+          @teams = Team.all
           render :show
         else
           @user = nil

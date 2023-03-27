@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_26_214831) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_27_133504) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -27,28 +27,29 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_26_214831) do
 
   create_table "teams", force: :cascade do |t|
     t.string "name"
+    t.integer "sponsor_id", default: 0
     t.integer "wins", default: 0
     t.integer "losses", default: 0
     t.integer "draws", default: 0
-    t.integer "manager_id"
+    t.integer "manager_id", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "sponsor_id"
     t.index ["name"], name: "index_teams_on_name", unique: true
   end
 
   create_table "users", force: :cascade do |t|
     t.string "firstname", null: false
+    t.string "lastname", null: false
     t.string "email", null: false
-    t.boolean "is_manager", default: false, null: false
-    t.string "password_digest"
-    t.string "session_token"
-    t.integer "team_id"
+    t.boolean "is_manager", default: false
+    t.string "password_digest", null: false
+    t.string "session_token", null: false
+    t.integer "team_id", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "lastname"
     t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["firstname"], name: "index_users_on_firstname", unique: true
+    t.index ["password_digest"], name: "index_users_on_password_digest", unique: true
+    t.index ["session_token"], name: "index_users_on_session_token", unique: true
   end
 
   create_table "venues", force: :cascade do |t|
@@ -56,10 +57,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_26_214831) do
     t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_venues_on_name", unique: true
   end
 
-  add_foreign_key "games", "teams", column: "away_team_id"
-  add_foreign_key "games", "teams", column: "home_team_id"
-  add_foreign_key "teams", "users", column: "manager_id"
-  add_foreign_key "users", "teams"
 end

@@ -20,12 +20,12 @@ class User < ApplicationRecord
   validates :firstname, :lastname, format: { without: URI::MailTo::EMAIL_REGEXP, message:  "can't be an email." }
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP, message: "has invalid format."}#email: {mode: :strict, require_fqdn: true, message: "must be a valid email"}
 
-  # belongs_to(
-  #     :team,
-  #     class_name: 'Team',
-  #     foreign_key: :team_id,
-  #     primary_key: :id
-  # )
+  belongs_to(
+      :team,
+      class_name: 'Team',
+      foreign_key: :team_id,
+      primary_key: :id
+  )
 
   before_validation :ensure_session_token
   attr_reader :password

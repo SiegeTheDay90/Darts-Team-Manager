@@ -46,27 +46,7 @@ ApplicationRecord.transaction do
         address: "41-04 31st Ave, Queens, NY 11103",
         name: "The Local"
     })
-
-    puts "Creating demo user..."
-    User.create!({
-        firstname: 'Demo',
-        lastname: 'User',
-        email: 'demo@user.io',
-        password: 'password',
-        team_id: nil
-    })
-
-    puts"Creating 23 users..."
-    23.times do
-        User.create!({
-            firstname: Faker::Name.first_name,
-            lastname: Faker::Name.last_name,
-            email: Faker::Internet.unique.safe_email,
-            password: 'password',
-            team_id: nil
-        })
-    end
-
+    
     puts "Creating Teams..."
     (1..4).each do |i|
         Team.create!({
@@ -74,6 +54,27 @@ ApplicationRecord.transaction do
             manager_id: i
         })
     end
+
+    puts "Creating demo user..."
+    User.create!({
+        firstname: 'Demo',
+        lastname: 'User',
+        email: 'demo@user.io',
+        password: 'password',
+        team_id: 1
+    })
+
+    puts"Creating 23 users..."
+    (1..23).each do |i|
+        User.create!({
+            firstname: Faker::Name.first_name,
+            lastname: Faker::Name.last_name,
+            email: Faker::Internet.unique.safe_email,
+            password: 'password',
+            team_id: (i+1)%4 + 1
+        })
+    end
+
     require "byebug"
     puts "Assigning Teams..."
     User.all.each_with_index do |user, idx|
@@ -82,7 +83,7 @@ ApplicationRecord.transaction do
     end
 
     puts "Creating Games..."
-    teams = Team.all.to_a[1..-1].combination(2).each do |pair|
+    teams = Team.all.to_a.combination(2).each do |pair|
         Game.create!({
             date: Faker::Date.between(from: 1.months.ago, to: Date.today),
             home_team_id: pair[0].id,
@@ -113,7 +114,7 @@ ApplicationRecord.transaction do
     puts "Creating a future game..."
     Game.create!({
         date: Date.new(2023, 12, 25),
-        home_team_id: 2,
+        home_team_id: 1,
         away_team_id: 3,
         winning_team_id: nil,
         score: nil

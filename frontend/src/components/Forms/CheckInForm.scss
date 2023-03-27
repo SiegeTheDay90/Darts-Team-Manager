@@ -4,9 +4,13 @@
         font-size: 14px;
         font-weight: 100;
     }
-    .round-header {
-        font-size: 16px;
-        font-weight: bolder;
-        margin-top: 10px;
+
+    .round-div {
+        padding-left: 5px;
+        margin: 10px 0 0 0;
+        input {
+            margin-top: 5px;
+            margin-left: 18px;
+        }
     }
 }

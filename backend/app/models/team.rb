@@ -33,6 +33,12 @@ class Team < ApplicationRecord
         return next_game ? next_game : last_game
     end
 
+    belongs_to(
+        :sponsor,
+        class_name: 'Venue',
+        foreign_key: 'sponsor_id'
+    )
+
 
     has_many(
         :players,

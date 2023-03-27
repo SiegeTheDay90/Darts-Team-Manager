@@ -51,6 +51,10 @@ $eggshell:rgb(255, 242, 219) ;
       font: inherit;
       vertical-align: baseline;
   }
+
+  html {
+    background-color: $eggshell;
+  }
   
   /* HTML5 display-role reset for older browsers */
   article, aside, details, figcaption, figure, 
