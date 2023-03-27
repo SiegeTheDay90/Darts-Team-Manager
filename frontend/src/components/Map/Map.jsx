@@ -7,7 +7,7 @@ const Map = () => {
   // debugger;
 
   const loader = new Loader({
-    apiKey: "AIzaSyCndfOG0KYhZcmRF_nqN73s6yq6yzpwMck",
+    apiKey: process.env.REACT_APP_MAP_API_KEY,
     version: "weekly",
     libraries: ["places"]
   });
