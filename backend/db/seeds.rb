@@ -21,30 +21,30 @@ ApplicationRecord.transaction do
     ApplicationRecord.connection.reset_pk_sequence!('games')
     ApplicationRecord.connection.reset_pk_sequence!('venues')
 
-    # puts "Creating Null Team..."
-    # Team.create!({
-    #     name: "null_team",
-    #     sponsor_id: nil,
-    #     manager_id: nil
-    # })
-
-
     puts "Creating Venues..."
     Venue.create!({
         address: "3718 28th Ave, Long Island City, NY 11103",
-        name: "Irish Rover"
+        name: "Irish Rover",
+        lat: 40.76,
+        lng: -73.91
     })
     Venue.create!({
         address: "2567 Steinway St, Astoria, NY 11103",
-        name: "Sissy McGinty's"
+        name: "Sissy McGinty's",
+        lat: 40.76,
+        lng: -73.92
     })
     Venue.create!({
         address: "47-22 30th Ave., Queens, NY 11103",
-        name: "Shillelagh"
+        name: "Shillelagh",
+        lat: 40.76,
+        lng: -73.91
     })
     Venue.create!({
         address: "41-04 31st Ave, Queens, NY 11103",
-        name: "The Local"
+        name: "The Local",
+        lat: 40.76,
+        lng: -73.91
     })
     
     puts "Creating Teams..."
@@ -89,7 +89,8 @@ ApplicationRecord.transaction do
             home_team_id: pair[0].id,
             away_team_id: pair[1].id,
             winning_team_id: pair.sample.id,
-            score: "AA-HH"
+            score: "AA-HH",
+            venue_id: pair[0].sponsor_id
         })
     end
 
@@ -117,7 +118,8 @@ ApplicationRecord.transaction do
         home_team_id: 1,
         away_team_id: 3,
         winning_team_id: nil,
-        score: nil
+        score: nil,
+        venue_id: Team.find(1).sponsor_id
     })
 
     puts "Running Tests..."

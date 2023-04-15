@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_27_133504) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_14_153936) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -23,6 +23,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_27_133504) do
     t.integer "reserved", default: [], array: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "venue_id"
+    t.index ["venue_id"], name: "index_games_on_venue_id"
   end
 
   create_table "teams", force: :cascade do |t|
@@ -55,6 +57,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_27_133504) do
   create_table "venues", force: :cascade do |t|
     t.string "address", default: "Unlisted"
     t.string "name", null: false
+    t.float "lat", null: false
+    t.float "lng", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_venues_on_name", unique: true

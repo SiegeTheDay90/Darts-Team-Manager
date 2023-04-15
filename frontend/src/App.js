@@ -26,6 +26,9 @@ function App() {
       <Route path="/map">
         <Map />
       </Route>
+      <footer>
+        Developed by <a href="https://siegetheday90.github.io/personal-site/">Clarence Smith</a>
+      </footer>
     </div>
   );
 }

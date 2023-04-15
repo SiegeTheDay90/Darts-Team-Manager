@@ -1,0 +1,28 @@
+@import '../../App.scss';
+
+.checkin-main {
+    padding-top: 10px;
+    label {
+        font-size: 14px;
+        font-weight: 100;
+    }
+
+    #attendance-button{
+        height: 50px;
+        width: 120px;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: $eggshell;
+    }
+
+    .green {
+        background-color: $light-green;
+    }
+
+    .red {
+        background-color: $red;
+        font-weight: bold;
+    }
+}

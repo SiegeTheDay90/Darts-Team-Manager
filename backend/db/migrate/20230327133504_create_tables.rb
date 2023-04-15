@@ -3,6 +3,8 @@ class CreateTables < ActiveRecord::Migration[7.0]
     create_table :venues do |t|
       t.string :address, default: "Unlisted"
       t.string :name, null: false, index: {unique: {message: "is already taken."}}, length: {minimum: 6, maximum: 24}
+      t.float :lat, null: false
+      t.float :lng, null: false
       t.timestamps
     end
 

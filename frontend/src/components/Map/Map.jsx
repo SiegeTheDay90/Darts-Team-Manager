@@ -1,36 +1,41 @@
-import {Loader} from '@googlemaps/js-api-loader';
-import {useEffect} from 'react';
+import {useState, useRef, useEffect} from 'react';
 import './Map.scss'
 
-const Map = () => {
-  let map = document.getElementById('map');
-  // debugger;
+const VenueMap = ({game}) => {
+  const mapRef = useRef();
+  const [map, setMap] = useState();
+  const marker = useRef();
+  const position = game.location;
 
-  const loader = new Loader({
-    apiKey: process.env.REACT_APP_MAP_API_KEY,
-    version: "weekly",
-    libraries: ["places"]
-  });
+  useEffect(() => {
+    debugger
+    setMap(
+      new window.google.maps.Map(mapRef.current,
+        {
+          center: position,
+          zoom: 15,
+          clickableI1cons: false,
+          disableDefaultUI: true,
+        }
+      )
+    );
 
-  const mapOptions = {
-    center: {
-      lat: 41,
-      lng: 286
-    },
-    zoom: 8
-  };
+    return () => {marker.current = null}
+  }, [game]);
+
+  useEffect(() => {
+    debugger
+    marker.current = new window.google.maps.Marker({
+      position: position,
+      map: map
+    });
+  }, [map])
 
 
-  loader.load().then((google) => {
-    new google.maps.Map(map, mapOptions)
-  })
-  
   return(
-    <>
-      <h1>Check</h1>
-    </>
+    <div ref={mapRef} id="map"></div>
   )
 }
 
-export default Map
+export default VenueMap
 
