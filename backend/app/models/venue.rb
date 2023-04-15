@@ -1,14 +1,12 @@
 # == Schema Information
 #
-# Table name: teams
+# Table name: venues
 #
 #  id         :bigint           not null, primary key
-#  name       :string
-#  sponsor    :string
-#  wins       :integer          default(0)
-#  losses     :integer          default(0)
-#  draws      :integer          default(0)
-#  manager_id :integer
+#  address    :string           default("Unlisted")
+#  name       :string           not null
+#  lat        :float            not null
+#  lng        :float            not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
@@ -19,6 +17,11 @@ class Venue < ApplicationRecord
     has_many(
         :teams,
         foreign_key: :sponsor_id
+    )
+
+    has_many(
+        :games,
+        foreign_key: :venue_id
     )
 
 end

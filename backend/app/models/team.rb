@@ -4,11 +4,11 @@
 #
 #  id         :bigint           not null, primary key
 #  name       :string
-#  sponsor    :string
+#  sponsor_id :integer          default(0)
 #  wins       :integer          default(0)
 #  losses     :integer          default(0)
 #  draws      :integer          default(0)
-#  manager_id :integer
+#  manager_id :integer          default(0)
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #

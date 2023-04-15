@@ -19,10 +19,6 @@ const LoginForm = () => {
     
     const [formType, setFormType] = useState('login');
 
-    if(sessionUser){
-        history.push('/myteams')
-    }
-
 
     useEffect(() => {
         if(errors[0]){
@@ -73,6 +69,11 @@ const LoginForm = () => {
     const demoClick = (e) => {
         e.preventDefault();
         dispatch(login({credential: 'demo@user.io', password: 'password'}))
+    }
+
+    if(sessionUser){
+        history.push('/myteams')
+        return
     }
 
     return(

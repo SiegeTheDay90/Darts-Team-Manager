@@ -22,6 +22,7 @@ export const fetchTeam = (id) => async dispatch => {
 }
 
 export const fetchTeams = (options = {}) => async dispatch => {
+  debugger
   let response;
   let url = '/api/teams?'
 
@@ -36,6 +37,7 @@ const initialState = JSON.parse(sessionStorage.getItem("teams")) || {}
   const teamsReducer = (state = initialState, action) => {
     switch (action.type) {
       case ADD_TEAM:
+        debugger
         return {...state, [action.payload.team.id] : action.payload.team }
 
       case LIST_TEAMS:

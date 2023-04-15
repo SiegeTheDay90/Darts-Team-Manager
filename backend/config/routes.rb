@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
   namespace :api do  
     resources :users
+    patch "/games/:id/reserve/", to: "games#reserve"
     resources :games, except: [:destroy]
     resources :teams
     resource :session, only: [:show, :create, :destroy, :update]

@@ -1,6 +1,7 @@
-json.set! @team.id do
+json.team do
     json.extract!(
-        @team, 
+        @team,
+        :id, 
         :name, 
         :sponsor, 
         :manager_id, 

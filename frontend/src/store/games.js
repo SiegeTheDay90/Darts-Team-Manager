@@ -16,6 +16,15 @@ const listGames = (payload) => ({
   payload
 });
 
+export const reserveGame = (gameId, userId) => async dispatch => {
+  const response = await csrfFetch(`/api/games/${gameId}/reserve/`,{
+    method: "PATCH",
+    body: JSON.stringify({userId})
+  });
+  const data = await response.json();
+  dispatch(addGame(data));
+}
+
 export const fetchGame = (id) => async dispatch => {
     const response = await csrfFetch(`/api/games/${id}`);
     const data = await response.json();
@@ -38,20 +47,20 @@ export const fetchGames = (options = {}) => async dispatch => {
 
 const initialState = JSON.parse(sessionStorage.getItem("games")) || {}
   
-  const gamesReducer = (state = initialState, action) => {
-    switch (action.type) {
-      case ADD_GAME:
-        return {...state, [action.payload.game.id] : action.payload.game}
+const gamesReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case ADD_GAME:
+      return {...state, [action.payload.game.id] : action.payload.game}
 
-      case LIST_GAMES:
-        return {...state, ...action.payload}
+    case LIST_GAMES:
+      return {...state, ...action.payload}
 
-      case SET_CURRENT_USER:
-          return { ...state, ...action.payload.games };
-  
-      default:
-        return state;
-    }
+    case SET_CURRENT_USER:
+        return { ...state, ...action.payload.games };
+
+    default:
+      return state;
+  }
 }
 
 export default gamesReducer;

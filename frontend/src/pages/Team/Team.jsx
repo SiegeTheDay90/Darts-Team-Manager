@@ -1,8 +1,9 @@
-// import { useEffect, useRef, useState } from 'react';
+import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import CheckInForm from '../../components/Forms/CheckInForm';
 import { restoreSession } from '../../store/session';
+import NextGame from '../../components/NextGame/NextGame';
+import VenueMap from '../../components/Map/Map';
 import './Team.scss';
 
 const Team = () => {
@@ -10,13 +11,19 @@ const Team = () => {
     const sessionUser = useSelector(state => state.session.user);
     const users = useSelector(state => state.users);
     const history = useHistory();
+
+
+    useEffect(() => {
+        dispatch(restoreSession())
+    }, [])
+
+    
+    
+    const team = useSelector(state => state.teams[sessionUser?.team_id]);
+    const nextGame = useSelector(state => state.games[team?.nextGame]);
     if(!sessionUser){
         history.push('/')
     }
-    
-
-    const team = useSelector(state => state.teams[sessionUser?.team_id]);
-    const nextGame = useSelector(state => state.games[team?.nextGame]);
     if(!team){
         dispatch(restoreSession);
     }
@@ -35,7 +42,10 @@ const Team = () => {
             </details>
         </div>
         <div className="main-content">
-            <CheckInForm game={nextGame} />
+            <NextGame game={nextGame} />
+        </div>
+        <div className="main-footer">
+            {nextGame ? <VenueMap game={nextGame} /> : null}
         </div>
     </>
     )
