@@ -1,13 +1,27 @@
 @import '../../App.scss';
 
 .checkin-main {
+    display: flex;
+    gap: 10px;
     padding-top: 10px;
     label {
         font-size: 14px;
         font-weight: 100;
     }
 
-    #attendance-button{
+    .caption {
+        padding-top: 7px;
+        font-size: 12px;
+        width: 100px;
+    }
+
+    &:hover {
+        .caption {
+            text-decoration: underline;
+        }
+    }
+
+   .attendance-button{
         height: 50px;
         width: 120px;
         cursor: pointer;
@@ -17,12 +31,28 @@
         color: $eggshell;
     }
 
-    .green {
+    .reserved {
         background-color: $light-green;
+        &::after {
+            content: "You're in!";
+        }
     }
 
-    .red {
+    .unreserved {
         background-color: $red;
         font-weight: bold;
+        &::after {
+            content: "Not in"
+        }
+    }
+
+    .none {
+        background-color: gray;
+        font-weight: bold;
+        &::after {
+            color: black;
+            content: "Click to Enter";
+            text-align: center;
+        }
     }
 }

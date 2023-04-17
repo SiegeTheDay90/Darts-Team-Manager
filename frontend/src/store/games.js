@@ -17,6 +17,7 @@ const listGames = (payload) => ({
 });
 
 export const reserveGame = (gameId, userId) => async dispatch => {
+  
   const response = await csrfFetch(`/api/games/${gameId}/reserve/`,{
     method: "PATCH",
     body: JSON.stringify({userId})
@@ -50,7 +51,8 @@ const initialState = JSON.parse(sessionStorage.getItem("games")) || {}
 const gamesReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_GAME:
-      return {...state, [action.payload.game.id] : action.payload.game}
+      
+      return {...state, ...action.payload.game}
 
     case LIST_GAMES:
       return {...state, ...action.payload}
