@@ -1,12 +1,19 @@
 class Api::GamesController < ApplicationController
-
     
     def reserve
+      begin
         @game = Game.find(params[:id])
+      rescue
+        
+      end
         if @game
             if current_user.id == params[:user_id]
 
-                @game.reserved << current_user.id unless @game.reserved.delete(current_user.id)
+                if @game.reserved.delete(current_user.id)
+                  @game.reserved << -current_user.id
+                elsif @game.reserved.delete(-current_user.id) || true
+                  @game.reserved << current_user.id
+                end
 
                 if @game.save
                     render :show
@@ -24,7 +31,7 @@ class Api::GamesController < ApplicationController
 
     def create
         @game = Game.new({
-          #game_attrs]
+          #game_attrs
         })
         
     

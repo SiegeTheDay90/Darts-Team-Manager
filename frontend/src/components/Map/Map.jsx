@@ -8,7 +8,7 @@ const VenueMap = ({game}) => {
   const position = game.location;
 
   useEffect(() => {
-    debugger
+    
     setMap(
       new window.google.maps.Map(mapRef.current,
         {
@@ -24,7 +24,7 @@ const VenueMap = ({game}) => {
   }, [game]);
 
   useEffect(() => {
-    debugger
+    
     marker.current = new window.google.maps.Marker({
       position: position,
       map: map

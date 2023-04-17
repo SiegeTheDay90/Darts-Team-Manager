@@ -26,7 +26,7 @@ def db_test()
     
     future = Game.last
 
-    # debugger
+    # 
     future.reserved << User.first.id
     future.reserved << User.second.id
 

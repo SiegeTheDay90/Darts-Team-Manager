@@ -96,3 +96,4 @@ yarn-debug.log*
 # Ignore uploaded files in development
 /backend/storage/*
 !/storage/.keep
+standup.md

@@ -1,6 +1,6 @@
 import { Route } from 'react-router-dom';
 import './App.scss';
-import Navigation from './components/header/navbar.jsx';
+import Navigation from './components/Navigation/navbar.jsx';
 import Map from './components/Map/Map';
 import Splash from './pages/Splash/Splash.jsx'
 import Team from './pages/Team/Team.jsx'

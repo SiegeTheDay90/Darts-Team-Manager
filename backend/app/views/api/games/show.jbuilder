@@ -1,7 +1,8 @@
 json.game do
     json.set! @game.id do
         json.extract!(
-            @game, 
+            @game,
+            :id,
             :date,
             :home_team_id,
             :away_team_id,
