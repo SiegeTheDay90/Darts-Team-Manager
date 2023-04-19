@@ -1,19 +1,17 @@
 class Api::UsersController < ApplicationController
-  wrap_parameters include: User.attribute_names + ['password']
+  wrap_parameters include: User.attribute_names + ['password', 'first_name', 'last_name']
 
   def create
     @user = User.new({
-      username: params[:username], 
-      email: params[:email], 
-      password: params[:password], 
-      team_id: 1
+      firstname: params[:first_name], 
+      lastname: params[:last_name], 
+      email: params[:email],
+      password: params[:password]
     })
 
-    if params[:team_id]
-      @user.team_id = params[:team_id]
-    end
-
+    @user.team_id = params[:team_id] ? params[:team_id] : 1
     if @user.save
+      UserMailer.with(user: @user).welcome_email.deliver_now
       login!(@user)
       render :show
     else

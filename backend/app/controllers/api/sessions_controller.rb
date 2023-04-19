@@ -14,7 +14,7 @@ class Api::SessionsController < ApplicationController
         @user = User.find_by_credentials(session_params[:credential], session_params[:password])
         if @user
           login!(@user)
-          @teams = Team.all
+          @teams = Team.all.includes(:home_games, :away_games)
           render :show
         else
           @user = nil

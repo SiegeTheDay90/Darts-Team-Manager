@@ -55,10 +55,10 @@ class ApplicationController < ActionController::API
     end
 
     def user_params
-        params.require(:user).permit(:firstname, :password, :email)
+        params.require(:user).permit(:first_name, :last_name, :password, :email, :credential)
     end
 
     def session_params
-        params.require(:session).permit(:credential, :password, :cart)
+        params.require(:session).permit(:credential, :password, :email)
     end
 end

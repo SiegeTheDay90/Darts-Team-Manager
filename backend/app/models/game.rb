@@ -11,7 +11,7 @@
 #  reserved        :integer          default([]), is an Array
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
-#  venues_id       :bigint
+#  venue_id        :bigint
 #
 class Game < ApplicationRecord
     validates :date, :home_team_id, :away_team_id, presence: {message: "must be present."}

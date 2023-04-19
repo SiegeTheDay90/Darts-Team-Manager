@@ -1,7 +1,7 @@
-import {useState, useEffect} from 'react';
+import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import {login, signup} from '../../store/session.js';
+import { login, signup } from '../../store/session.js';
 import { storeErrors } from '../../store/errors.js';
 import './LoginForm.scss';
 
@@ -55,14 +55,18 @@ const LoginForm = () => {
         if(formType==='login'){
             if(!credential){
                 dispatch(storeErrors({errors:["Email can't be blank"]}));
-
             } else {
                 const user = {credential, password};
                 dispatch(login(user));
             }
         } else if(formType==='signup'){
-            const user = {firstName, lastName, email, password};
-            dispatch(signup(user));
+            const confirm = document.getElementById('ConfirmPassword');
+            if(password == confirm.value){
+                const user = {firstName, lastName, email, password};
+                dispatch(signup(user)).then(() => dispatch(login(user)));
+            } else {
+                document.getElementById('confirmError').style.display = "block";
+            }
         }
     }
 
@@ -106,21 +110,17 @@ const LoginForm = () => {
         </div>}
         {formType==='signup' && 
         <div id="LoginForm">
+
         <div className="FormDiv">
-            <h3>Create your account</h3>
-        </div>
-        <div className="FormDiv">
-            <h4>Registration is easy.</h4>
+            <h2>Sign up</h2><br/>
+            <button className='button-small' onClick={() => setFormType('login')}>Log In</button>
         </div>
         
-        <form onSubmit={handleSubmit} className="Form">
+        <form id="signUpForm" onSubmit={handleSubmit} className="Form">
             <div className="InputContainer">
                 <label htmlFor="InputEmail">Email <span style={{color: "#dd0000"}}>*</span></label>
                 <input id="InputEmail" value={email} onChange={(e) => setEmail(e.target.value)} className="Input"/>
                 <span className="error" id="emailError"></span>
-
-
-
             </div>
 
             <div className="InputContainer">
@@ -130,7 +130,7 @@ const LoginForm = () => {
             </div>
 
             <div className="InputContainer">
-                <label htmlFor="InputLastName">Last name <span style={{color: "#dd0000"}}>*</span></label>
+                <label htmlFor="InputLastName">Last name </label>
                 <input id="InputLastName" value={lastName} onChange={(e) => setLastName(e.target.value)} className="Input"/>
                 <span className="error" id="lastNameError"></span>
             </div>
@@ -139,6 +139,11 @@ const LoginForm = () => {
                 <label htmlFor="InputPassword">Password <span style={{color: "#dd0000"}}>*</span></label>
                 <input id="InputPassword" type="password" value={password} onChange={(e) => setPassword(e.target.value)} className="Input"/>
                 <span className="error" id="passwordError"></span>
+            </div>
+            <div className="InputContainer">
+                <label htmlFor="InputPassword"> Confirm Password <span style={{color: "#dd0000"}}>*</span></label>
+                <input id="ConfirmPassword" type="password" className="Input"/>
+                <span className="error" id="confirmError">Passwords do not match.</span>
             </div>
 
 
