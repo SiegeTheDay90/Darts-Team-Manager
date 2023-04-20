@@ -17,6 +17,7 @@ const SessionInfo = ({session}) => {
         <summary>
             <span>{sessionUser.firstname}</span> <i className="fa-solid fa-user"></i>
         </summary>
+        <li className="nav-li">Account</li>
         <button className="black nav-session-button" onClick={logoutClick}>Logout</button>
     </details>
     )

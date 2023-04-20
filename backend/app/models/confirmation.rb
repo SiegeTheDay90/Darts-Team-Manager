@@ -30,4 +30,6 @@ class Confirmation < ApplicationRecord
         end
     end
 
+    belongs_to :user
+
 end

@@ -1,0 +1,12 @@
+@use '../../../App.scss' as *;
+
+#account-settings {
+    background-color: white;
+    padding: 30px;
+    position: absolute;
+    z-index: -1;
+    top: 100px;
+    left: 15px;
+    right: 15px;
+    border-radius: 0 0 20px 20px;
+}

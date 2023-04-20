@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
-import { login, signup } from '../../store/session.js';
-import { storeErrors } from '../../store/errors.js';
-import './LoginForm.scss';
+import { useHistory, Link } from 'react-router-dom';
+import { login, signup } from '../../../store/session.js';
+import { storeErrors } from '../../../store/errors.js';
+import '../Form.scss';
 
 const LoginForm = () => {
     const dispatch = useDispatch();
@@ -61,7 +61,7 @@ const LoginForm = () => {
             }
         } else if(formType==='signup'){
             const confirm = document.getElementById('ConfirmPassword');
-            if(password == confirm.value){
+            if(password === confirm.value){
                 const user = {firstName, lastName, email, password};
                 dispatch(signup(user)).then(() => dispatch(login(user)));
             } else {
@@ -102,6 +102,7 @@ const LoginForm = () => {
                 <input id="InputPassword" type="password" value={password} onChange={(e) => setPassword(e.target.value)} className="Input" />
                 <span className="error" id="passwordError"></span>
                 </div>
+                <Link to="/request">Forgot Password</Link>
                 <div className="button-container">
                     <input className="button-large" type="submit" value="Sign in" disabled={!password}/>
                     <input className="button-large demo-button" type="button" value="Demo User" onClick={demoClick}/>

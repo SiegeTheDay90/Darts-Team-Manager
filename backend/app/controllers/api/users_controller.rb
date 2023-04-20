@@ -42,4 +42,33 @@ class Api::UsersController < ApplicationController
       render json: {errors: ["User does not exist."], status: 422}
     end
   end
+
+  def reset
+    confirm = Confirmation.find_by(code: params[:credential])
+    
+    if confirm
+      @user = confirm.user
+      @user.password = params[:password]
+      if @user.save
+          login!(@user)
+          render :show
+      end
+    else
+      render json: {errors: ["Code mismatch."], status: 403}
+    end
+  end
+
+  def request_reset
+    @user = User.find_by(email: params[:credential])
+
+    if @user
+      confirmation = Confirmation.new(user_id: @user.id)
+      if confirmation.save
+        UserMailer.with(user: @user).reset_request.deliver_now
+        render json: {message: "Success"}
+      else
+        render json: {errors: confirmation.errors.full_messages}, status: 422
+      end
+    end
+  end
 end

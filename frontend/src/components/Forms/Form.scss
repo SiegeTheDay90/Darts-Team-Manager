@@ -1,11 +1,24 @@
 @use '../../App.scss' as *;
 
+a {
+    color: $green;
+}
+
 #LoginForm {
     position: static;
-    width: 80%;
+    width: 70vw;
     height: 50vh;
     background-color: #ffffff;
     padding: 20px 24px 30px 24px;
+    border-radius: 0 0 20px 20px;
+}
+
+#ResetPassword {
+    background-color: $eggshell;
+    background-color: #ffffff;
+    border-radius: 0 0 20px 20px;
+    padding: 20px;
+    width: 70vw;
 }
 
 #signUpForm .InputContainer{
@@ -42,6 +55,7 @@ label {
     margin-bottom: 10px;
     border: none;
     background-color: $input;
+    border: 1px solid rgb(161, 205, 161);
     opacity: 0.7;
 }
 
@@ -86,12 +100,20 @@ h2 {
     color: #ae0000;
 }
 
+.message {
+    display: none;
+    font-size: 20px;
+    color: $green;
+    padding: 10px;
+}
+
 .button-container {
     display: flex;
     flex-direction: row;
     gap: 10px;
     width: 100%;
     align-self: flex-start;
+    justify-content: center;
 }
 
 .button-large {

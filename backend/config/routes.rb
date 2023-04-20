@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   namespace :api do  
     resources :users
     patch "/games/:id/reserve/", to: "games#reserve"
+    patch "/reset", to: "users#reset"
+    post "/reset", to: "users#request_reset"
     resources :games, except: [:destroy]
     resources :teams
     resource :session, only: [:show, :create, :destroy, :update]
