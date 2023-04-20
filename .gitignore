@@ -97,3 +97,4 @@ yarn-debug.log*
 /storage/*
 !/storage/.keep
 standup.md
+/config/master.key
