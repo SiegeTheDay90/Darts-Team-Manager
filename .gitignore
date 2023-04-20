@@ -28,7 +28,7 @@
 !/tmp/storage/.keep
 
 # Ignore master key for decrypting credentials and more.
-/config/master.key
+config/master.key
 
 *.rbc
 capybara-*.html
@@ -50,8 +50,7 @@ pickle-email-*.html
 !/tmp/.keep
 
 # TODO Comment out this rule if you are OK with secrets being uploaded to the repo
-backend/config/initializers/secret_token.rb
-backend/config/master.key
+config/initializers/secret_token.rb
 
 # Only include if you have production secrets in this file, which is no longer a Rails default
 # config/secrets.yml

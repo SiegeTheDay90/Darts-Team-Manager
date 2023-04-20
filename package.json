@@ -1,0 +1,27 @@
+{
+  "name": "darts-team-manager",
+  "version": "1.0.0",
+  "description": "## MVPs",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "engines":{
+    "node": "16.x"
+  },
+  "scripts": {
+    "build": "npm install --prefix frontend && npm run build --prefix frontend"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SiegeTheDay90/Darts-Team-Manager.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SiegeTheDay90/Darts-Team-Manager/issues"
+  },
+  "homepage": "https://github.com/SiegeTheDay90/Darts-Team-Manager#readme"
+}

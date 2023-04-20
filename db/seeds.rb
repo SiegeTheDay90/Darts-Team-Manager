@@ -75,7 +75,6 @@ ApplicationRecord.transaction do
         })
     end
 
-    require "byebug"
     puts "Assigning Teams..."
     User.all.each_with_index do |user, idx|
         user.team_id = (idx % 4) + 1
