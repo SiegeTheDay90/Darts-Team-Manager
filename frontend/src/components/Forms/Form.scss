@@ -4,6 +4,7 @@ a {
     color: $green;
 }
 
+
 #LoginForm {
     position: static;
     width: 70vw;
@@ -150,4 +151,10 @@ h2 {
     width: 70px;
     text-decoration: none;
     transition: background-color 0.2s ease-out;
+}
+
+.alert {
+    background-color: #ae0000;
+    color: $eggshell;
+    border: 1px solid white;
 }

@@ -7,7 +7,7 @@ const SET_CURRENT_USER = 'session/setCurrentUser';
 const REMOVE_CURRENT_USER = 'session/removeCurrentUser';
 
 
-const setCurrentUser = (payload) => ({
+export const setCurrentUser = (payload) => ({
   type: SET_CURRENT_USER,
   payload
 });

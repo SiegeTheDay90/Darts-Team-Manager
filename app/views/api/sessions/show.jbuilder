@@ -1,10 +1,10 @@
 json.user do
-    json.extract! @user, :id, :firstname, :lastname, :email, :team_id, :is_manager, :created_at, :updated_at
+    json.extract! @user, :id, :first_name, :last_name, :email, :team_id, :is_manager, :created_at, :updated_at
 end
 json.teams do
     @teams.each do |team|
         json.set! team.id do
-            json.extract! team, :id, :name, :sponsor_id, :wins, :losses, :draws, :manager_id
+            json.extract! team, :id, :name, :sponsor_id, :wins, :losses, :draws, :manager_id, :requested
             json.nextGame team.next_game.id 
         end
     end   
@@ -12,7 +12,7 @@ end
 json.users do
     @user.team.players.each do |player|
         json.set! player.id do
-            json.extract! player, :id, :firstname, :lastname, :team_id, :is_manager, :email
+            json.extract! player, :id, :first_name, :last_name, :team_id, :is_manager, :email
         end
     end
 end

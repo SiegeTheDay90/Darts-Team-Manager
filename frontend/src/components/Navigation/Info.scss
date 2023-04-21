@@ -4,14 +4,18 @@
 .nav-li {
     list-style: none;
     font-size: 14px;
-    padding: 5px 0;
-    font-weight: bold;
-    text-align: center;
     text-decoration: underline;
     cursor: pointer;
+    width: fit-content;
+    padding: 1px;
+    margin: 10px 0 10px auto;
     &:hover {
         background-color: rgba(0, 0, 0, 0.1);
     }
+}
+.active {
+    color: rgb(222, 0, 0);
+    font-weight: bold;
 }
 #user-card {
     text-align: right;
@@ -20,16 +24,15 @@
     flex-direction: row;
     right: 10px;
     top: 105px;
-    background-color: transparent;
-    padding: 0 5px 0 0;
+    padding: 0 5px 8px 5px;
+    border-radius: 0 0 10px 10px;
     i {
         color: $green;
         font-size: 16px;
     }
     button {
-        position: absolute;
-        margin: 3px 0;
-        right: 0;
+        position: relative;
+        margin: 3px 0 0 auto;
         background-color: $dark-green;
         border: none;
         border-radius: 8px;
@@ -41,6 +44,17 @@
             border-radius: 2px;
         }
     }
+}
+details{
+    background-color: transparent;
+    transition: 0.2s;
+}
+details[open]#user-card{
+    background-color: rgba(255, 255, 255, 0.9);
+    transform: scale(1.1, 1.1);
+    translate: 0 5px;
+    top: 103px;
+    padding-top: 5px;
 }
 
 #Logo {

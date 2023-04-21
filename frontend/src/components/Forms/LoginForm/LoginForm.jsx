@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useHistory, Link } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import { login, signup } from '../../../store/session.js';
 import { storeErrors } from '../../../store/errors.js';
 import '../Form.scss';
@@ -14,7 +14,6 @@ const LoginForm = () => {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
-    const history = useHistory();
 
     
     const [formType, setFormType] = useState('login');
@@ -76,8 +75,7 @@ const LoginForm = () => {
     }
 
     if(sessionUser){
-        history.push('/myteams')
-        return
+        return <Redirect to="/myteams" />
     }
 
     return(

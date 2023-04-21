@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_19_173125) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_20_193336) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -45,12 +45,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_19_173125) do
     t.integer "manager_id", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "requested", default: [], array: true
     t.index ["name"], name: "index_teams_on_name", unique: true
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "firstname", null: false
-    t.string "lastname", null: false
+    t.string "first_name", null: false
+    t.string "last_name", null: false
     t.string "email", null: false
     t.boolean "is_manager", default: false
     t.string "password_digest", null: false

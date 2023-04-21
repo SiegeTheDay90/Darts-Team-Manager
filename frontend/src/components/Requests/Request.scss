@@ -1,0 +1,25 @@
+@import '../../App.scss';
+
+
+.buttons-container {
+    display: flex;
+    gap: 10px;
+    width: fit-content;
+}
+
+.approve {
+    background-color: $green;
+    color: $eggshell;
+    margin-top: 10px;
+}
+
+.reject {
+    background-color: $red;
+    color: $eggshell;
+    margin-top: 10px;
+}
+
+.request-list-item {
+    border: 1px solid $dark-green;
+    padding: 10px;
+}

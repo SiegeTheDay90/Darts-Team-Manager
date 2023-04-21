@@ -11,6 +11,7 @@ json.team do
         :created_at, 
         :updated_at,
         :players,
-        :games
+        :games,
+        :requested
     )
 end

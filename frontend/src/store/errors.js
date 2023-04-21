@@ -1,20 +1,20 @@
 const SET_ERRORS = 'errors/setErrors'
 
-const setErrors = (payload) => ({
+const setErrors = (response) => ({
     type: SET_ERRORS,
-    payload
+    payload: response.errors
 })
 
-export const storeErrors = (errors) => dispatch => {
-    dispatch(setErrors(errors));
+export const storeErrors = (response) => dispatch => {
+    dispatch(setErrors(response));
 }
 
-const initialState = JSON.parse(sessionStorage.getItem("errors"))  || {}
+const initialState = JSON.parse(sessionStorage.getItem("errors")) || {}
   
 const errorsReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_ERRORS:
-      return action.payload.errors;
+      return action.payload;
 
     default:
       return state;

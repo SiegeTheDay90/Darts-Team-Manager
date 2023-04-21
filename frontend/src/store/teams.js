@@ -5,7 +5,7 @@ const LIST_TEAMS = 'teams/listTeams';
 const SET_CURRENT_USER = 'session/setCurrentUser';
 
 
-const addTeam = (payload) => ({
+export const addTeam = (payload) => ({
   type: ADD_TEAM,
   payload
 });
@@ -17,6 +17,14 @@ const listTeams = (payload) => ({
 
 export const fetchTeam = (id) => async dispatch => {
     const response = await csrfFetch(`/api/teams/${id}`);
+    const data = await response.json();
+    dispatch(addTeam(data));
+}
+export const requestTeam = (teamId, userId) => async dispatch => {
+    const response = await csrfFetch(`/api/requestAdd`, {
+      method: 'PATCH',
+      body: JSON.stringify({userId, teamId})
+    });
     const data = await response.json();
     dispatch(addTeam(data));
 }

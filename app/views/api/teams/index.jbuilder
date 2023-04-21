@@ -1,7 +1,8 @@
 @teams.each do |team|
     json.set! team.id do
         json.extract!(
-            team, 
+            team,
+            :id, 
             :name, 
             :sponsor, 
             :manager_id, 
@@ -11,7 +12,8 @@
             :created_at, 
             :updated_at,
             :players,
-            :games
+            :games,
+            :requested
         )
     end
 end

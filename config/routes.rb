@@ -9,6 +9,8 @@ Rails.application.routes.draw do
     patch "/games/:id/reserve/", to: "games#reserve"
     patch "/reset", to: "users#reset"
     post "/reset", to: "users#request_reset"
+    patch "/memberAdd", to: "users#add_to_team"
+    patch "/requestAdd", to: "teams#add_request"
     resources :games, except: [:destroy]
     resources :teams
     resource :session, only: [:show, :create, :destroy, :update]

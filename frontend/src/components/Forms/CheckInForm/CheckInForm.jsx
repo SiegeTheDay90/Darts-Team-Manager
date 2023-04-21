@@ -4,8 +4,8 @@ import './CheckInForm.scss';
 const CheckInForm = ({game}) => {
     const dispatch = useDispatch();
     const sessionUser = useSelector(state => state.session.user);
-    const home = useSelector(state => state.teams[game?.home_team_id]);
-    const away = useSelector(state => state.teams[game?.away_team_id]);
+    const home = useSelector(state => state.teams[game?.homeTeamId]);
+    const away = useSelector(state => state.teams[game?.awayTeamId]);
     if(!game){
         return <h1>Loading...</h1>
     }
