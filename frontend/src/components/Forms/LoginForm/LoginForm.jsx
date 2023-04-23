@@ -1,12 +1,14 @@
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Redirect, Link } from 'react-router-dom';
+import { Redirect, Link, useHistory } from 'react-router-dom';
 import { login, signup } from '../../../store/session.js';
 import { storeErrors } from '../../../store/errors.js';
+import './LoginForm.scss';
 import '../Form.scss';
 
 const LoginForm = () => {
     const dispatch = useDispatch();
+    const history = useHistory();
     const sessionUser = useSelector(state => state.session.user);
     const errors = useSelector(state => state.errors);
     const [credential, setCredential] = useState('');
@@ -62,7 +64,7 @@ const LoginForm = () => {
             const confirm = document.getElementById('ConfirmPassword');
             if(password === confirm.value){
                 const user = {firstName, lastName, email, password};
-                dispatch(signup(user)).then(() => dispatch(login(user)));
+                dispatch(signup(user)).then(() => dispatch(login(user))).then(() => history.push('/account'));
             } else {
                 document.getElementById('confirmError').style.display = "block";
             }

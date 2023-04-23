@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { updateUser } from '../../../store/users';
+import './UserDetail.scss';
 import '../Form.scss';
 
 const UserDetails = () => {

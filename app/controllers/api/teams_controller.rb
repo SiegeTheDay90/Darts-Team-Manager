@@ -44,6 +44,20 @@ class Api::TeamsController < ApplicationController
       render json: {errors: ["Team or User not found."], status: 404}
     end
   end
+  
+  def remove_request
+    @team = Team.find_by(id: params[:team_id])
+    if @team
+      @team.requested.delete(params[:user_id].to_i)
+      if @team.save
+        render :show
+      else
+        render json: {errors: @team.errors.full_messages, status: 422}
+      end
+    else
+      render json: {errors: ["Team or User not found."], status: 404}
+    end
+  end
 
   def update
     @team = Team.find(params[:id])

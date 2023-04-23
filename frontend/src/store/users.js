@@ -16,7 +16,6 @@ const addUser = (user) => ({
 })
 
 const listUsers = (users) => {
-    debugger
     return {
         type: LIST_USERS,
         users
@@ -55,7 +54,7 @@ export const updateUser = (user) => async dispatch => {
 }
 
 
-export const add_to_team = (userId, teamId) => async dispatch => {
+export const addToTeam = (userId, teamId) => async dispatch => {
     const response = await csrfFetch(`/api/memberAdd`,{
         method: "PATCH",
         body: JSON.stringify({teamId, userId})

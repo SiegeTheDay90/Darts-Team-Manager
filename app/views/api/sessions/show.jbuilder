@@ -9,17 +9,20 @@ json.teams do
         end
     end   
 end
-json.users do
-    @user.team.players.each do |player|
-        json.set! player.id do
-            json.extract! player, :id, :first_name, :last_name, :team_id, :is_manager, :email
+
+if @user.team
+    json.users do
+        @user.team.players.each do |player|
+            json.set! player.id do
+                json.extract! player, :id, :first_name, :last_name, :team_id, :is_manager, :email
+            end
         end
     end
-end
-json.games do
-    @user.team.games.each do |game|
-        json.set! game.id do
-            json.extract! game, :id, :date, :home_team_id, :away_team_id, :winning_team_id, :score, :reserved, :venue_id, :location
+    json.games do
+        @user.team.games.each do |game|
+            json.set! game.id do
+                json.extract! game, :id, :date, :home_team_id, :away_team_id, :winning_team_id, :score, :reserved, :venue_id, :location
+            end
         end
     end
 end

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { requestTeam } from '../../../store/teams';
+import { requestAdd } from '../../../store/teams';
 import { updateUser } from '../../../store/users';
 import '../Form.scss';
 import './TeamSelect.scss';
@@ -17,7 +17,7 @@ const TeamSelect = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch(requestTeam(chosen, sessionUser.id))
+        dispatch(requestAdd(chosen, sessionUser.id))
     };
 
     const handleQuit = (e) => {
@@ -61,7 +61,8 @@ const TeamSelect = () => {
             {!sessionUserTeam &&
                 <form id="team-select-form" onSubmit={handleSubmit} className="Form">
 
-                    <select default={chosen} onChange={(e) => setChosen(e.target.value)} className="Input">
+                    <select default={0} onChange={(e) => setChosen(e.target.value)} className="Input">
+                        <option value={0}>Pick a Team</option>
                         {
                             Object.values(teams).map(team => (
                                 <option key={team.id} value={team.id}>{team.name}</option>

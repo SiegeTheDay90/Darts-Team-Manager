@@ -20,7 +20,7 @@ export const fetchTeam = (id) => async dispatch => {
     const data = await response.json();
     dispatch(addTeam(data));
 }
-export const requestTeam = (teamId, userId) => async dispatch => {
+export const requestAdd = (teamId, userId) => async dispatch => {
     const response = await csrfFetch(`/api/requestAdd`, {
       method: 'PATCH',
       body: JSON.stringify({userId, teamId})
@@ -29,8 +29,17 @@ export const requestTeam = (teamId, userId) => async dispatch => {
     dispatch(addTeam(data));
 }
 
+export const requestRemove = ({teamId, userId}) => async dispatch => {
+  const response = await csrfFetch(`/api/requestRemove`, {
+      method: 'PATCH',
+      body: JSON.stringify({userId, teamId})
+    });
+    const data = await response.json();
+    dispatch(addTeam(data));
+}
+
+
 export const fetchTeams = (options = {}) => async dispatch => {
-  
   let response;
   let url = '/api/teams?'
 
@@ -45,7 +54,6 @@ const initialState = JSON.parse(sessionStorage.getItem("teams")) || {}
   const teamsReducer = (state = initialState, action) => {
     switch (action.type) {
       case ADD_TEAM:
-        
         return {...state, [action.payload.team.id] : action.payload.team }
 
       case LIST_TEAMS:

@@ -10,22 +10,20 @@ json.user do
 end
 if @team
     json.team do
-        json.set! @team.id do
-            json.extract!(
-                team,
-                :id, 
-                :name, 
-                :sponsor, 
-                :manager_id, 
-                :wins, 
-                :losses, 
-                :draws, 
-                :created_at, 
-                :updated_at,
-                :players,
-                :games,
-                :requested
-            )
-        end
+        json.extract!(
+            @team,
+            :id, 
+            :name, 
+            :sponsor, 
+            :manager_id, 
+            :wins, 
+            :losses, 
+            :draws, 
+            :created_at, 
+            :updated_at,
+            :players,
+            :games,
+            :requested
+        )
     end
 end

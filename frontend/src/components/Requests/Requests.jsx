@@ -11,13 +11,13 @@ const Requests = ({team}) => {
     const users = useSelector(state => state.users);
     const requests = team?.requested
     useEffect(() => {
-        debugger
         dispatch(fetchUsers(requests))
     }, [requests, dispatch])
 
     return(
         
         <ol>
+            <h2>Join Requests</h2>
             {team && requests.map((request) => {
                 switch(!!users[request]){
                     case true:

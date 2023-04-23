@@ -9,7 +9,6 @@ class Api::UsersController < ApplicationController
       password: params[:password]
     })
 
-    @user.team_id = params[:team_id] ? params[:team_id] : 1
     if @user.save
       UserMailer.with(user: @user).welcome_email.deliver_now
       login!(@user)
@@ -60,7 +59,7 @@ class Api::UsersController < ApplicationController
     end
   end
 
-  def addToTeam
+  def add_to_team
     @user = User.find_by(id: params[:user_id])
     @team = Team.find_by(id: params[:team_id])
     if @user && @team
