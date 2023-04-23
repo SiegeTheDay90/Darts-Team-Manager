@@ -3,13 +3,12 @@ class Api::UsersController < ApplicationController
 
   def create
     @user = User.new({
-      firstname: params[:first_name], 
-      lastname: params[:last_name], 
+      first_name: params[:first_name], 
+      last_name: params[:last_name], 
       email: params[:email],
       password: params[:password]
     })
 
-    @user.team_id = params[:team_id] ? params[:team_id] : 1
     if @user.save
       UserMailer.with(user: @user).welcome_email.deliver_now
       login!(@user)
@@ -20,9 +19,15 @@ class Api::UsersController < ApplicationController
   end
 
   def index
-    @users = User.all
-
-    render :index
+    if !params[:users]
+      @users = User.all
+    else
+      begin
+        @users = User.find(JSON.parse(params[:users]))
+      rescue
+        @users = User.all
+      end
+    end
   end
 
   def show
@@ -30,16 +35,43 @@ class Api::UsersController < ApplicationController
     if @user
       render :show
     else
-      render json: {errors: ["User does not exist."], status: 422}
+      render json: {errors: ["User does not exist."], status: 404}
     end
   end
 
   def update
     @user = User.find(params[:id])
     if @user
-      render json: {payload: "This is the user#update route."}
+      for k in params.keys
+        if @user[k]
+          @user[k] = params[k]
+        end
+      end
+
+      if @user.save
+        @team = nil
+        render :show
+      else
+        render json: {errors: @user.errors.full_messages}, status: 422
+      end
     else
-      render json: {errors: ["User does not exist."], status: 422}
+      render json: {errors: ["User does not exist."], status: 404}
+    end
+  end
+
+  def add_to_team
+    @user = User.find_by(id: params[:user_id])
+    @team = Team.find_by(id: params[:team_id])
+    if @user && @team
+      @user.team_id = @team.id
+      @team.requested.delete(@user.id)
+      if @user.save && @team.save
+        render :show
+      else
+        render json: {errors: @user.errors.full_messages+@team.errors.full_messages}, status: 422
+      end
+    else
+      render json: {errors: ["User does not exist."], status: 404}
     end
   end
 
@@ -54,7 +86,7 @@ class Api::UsersController < ApplicationController
           render :show
       end
     else
-      render json: {errors: ["Code mismatch."], status: 403}
+      render json: {errors: ["Code mismatch."], status: 401}
     end
   end
 

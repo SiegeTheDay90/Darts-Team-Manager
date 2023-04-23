@@ -1,0 +1,8 @@
+@use '../../../App.scss' as *;
+
+#user-details, #team-select {
+    width: 70%;
+    max-width: 500px;
+    background-color: #ffffff;
+    padding: 20px 24px 30px 24px;
+}

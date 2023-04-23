@@ -1,11 +1,13 @@
 @users.each do |user|
     json.set! user.id do
         json.extract!(
-            user, 
-            :firstname,
-            :lastname,
+            user,
+            :id, 
+            :first_name,
+            :last_name,
             :email,
-            :team_id
+            :team_id,
+            :is_manager
         )
     end
 end

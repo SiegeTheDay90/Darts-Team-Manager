@@ -4,14 +4,6 @@ a {
     color: $green;
 }
 
-#LoginForm {
-    position: static;
-    width: 70vw;
-    height: 50vh;
-    background-color: #ffffff;
-    padding: 20px 24px 30px 24px;
-    border-radius: 0 0 20px 20px;
-}
 
 #ResetPassword {
     background-color: $eggshell;
@@ -21,13 +13,7 @@ a {
     width: 70vw;
 }
 
-#signUpForm .InputContainer{
-    font-size: smaller;
-    height: fit-content;
-    input {
-        height: 10px;
-    }
-}
+
 
 .FormDiv {
     display: flex;
@@ -110,19 +96,18 @@ h2 {
 .button-container {
     display: flex;
     flex-direction: row;
-    gap: 10px;
     width: 100%;
     align-self: flex-start;
-    justify-content: center;
+    justify-content: space-around;
 }
 
 .button-large {
-    border-radius: 10px;
+    border-radius: 40px;
     background: $dark-green;
     color: $light-green;
     font-size: 16px;
-    height: 80px;
-    width: 50%;
+    height: 50px;
+    width: 40%;
     transition: 0.2s;
 }
 
@@ -135,7 +120,7 @@ h2 {
     color: $grey;
     background: #555555;
     cursor: not-allowed;
-    border-radius: 10px;
+    border-radius: 40px;
     border: 2px solid #00000000
 }
 
@@ -150,4 +135,10 @@ h2 {
     width: 70px;
     text-decoration: none;
     transition: background-color 0.2s ease-out;
+}
+
+.alert {
+    background-color: #ae0000;
+    color: $eggshell;
+    border: 1px solid white;
 }

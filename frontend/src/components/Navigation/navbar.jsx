@@ -1,10 +1,18 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import SessionInfo from "./Info.jsx";
 import {Link} from 'react-router-dom'
 import './Navigation.scss'
+import { useEffect } from "react";
+import { restoreSession } from "../../store/session.js";
 
 
 const Navigation = () => {
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(restoreSession())
+  }, [])
 
   const session = useSelector(state => state.session)  
   return (

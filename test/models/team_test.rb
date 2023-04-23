@@ -11,6 +11,7 @@
 #  manager_id :integer          default(0)
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  requested  :integer          default([]), is an Array
 #
 require "test_helper"
 

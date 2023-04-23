@@ -1,14 +1,14 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useState, useEffect } from 'react';
-import './NextGame.scss';
 import { reserveGame } from '../../store/games';
+import './NextGame.scss';
 
 const NextGame = ({game}) => {
     const dispatch = useDispatch();
     const sessionUser = useSelector(state => state.session.user);
     const [attClass, setAttClass] = useState("none")
-    const home = useSelector(state => state.teams[game?.home_team_id]);
-    const away = useSelector(state => state.teams[game?.away_team_id]);
+    const home = useSelector(state => state.teams[game?.homeTeamId]);
+    const away = useSelector(state => state.teams[game?.awayTeamId]);
     
     useEffect(() => {
         setAttClass(

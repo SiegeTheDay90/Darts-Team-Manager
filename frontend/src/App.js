@@ -6,8 +6,9 @@ import Splash from './pages/Splash/Splash.jsx'
 import Team from './pages/Team/Team.jsx'
 import ResetPassword from './components/Forms/ResetPassword/ResetPassword';
 import RequestReset from './components/Forms/ResetPassword/RequestReset';
-import AccountSettings from './components/Forms/AccountSettings/AccountSettings';
+import Account from './pages/Account/Account';
 import NotFound from './pages/NotFound/NotFound';
+import ManagerView from './pages/ManagerView/ManagerView';
 
 
 
@@ -35,8 +36,11 @@ function App() {
       <Route path="/request">
         <RequestReset />
       </Route>
+      <Route path="/manage">
+        <ManagerView />
+      </Route>
       <Route path="/account">
-        <AccountSettings />
+        <Account />
       </Route>
       <Route path="*" component={NotFound} />
     </Switch>

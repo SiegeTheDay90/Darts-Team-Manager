@@ -57,8 +57,8 @@ ApplicationRecord.transaction do
 
     puts "Creating demo user..."
     User.create!({
-        firstname: 'Demo',
-        lastname: 'User',
+        first_name: 'Demo',
+        last_name: 'User',
         email: 'demo@user.io',
         password: 'password',
         team_id: 1
@@ -67,8 +67,8 @@ ApplicationRecord.transaction do
     puts"Creating 23 users..."
     (1..23).each do |i|
         User.create!({
-            firstname: Faker::Name.first_name,
-            lastname: Faker::Name.last_name,
+            first_name: Faker::Name.first_name,
+            last_name: Faker::Name.last_name,
             email: Faker::Internet.unique.safe_email,
             password: 'password',
             team_id: (i+1)%4 + 1
@@ -79,6 +79,11 @@ ApplicationRecord.transaction do
     User.all.each_with_index do |user, idx|
         user.team_id = (idx % 4) + 1
         user.save!
+    end
+
+    puts "Assigning Managers..."
+    Team.all.each do |team|
+        team.manager.update!(is_manager: true)
     end
 
     puts "Creating Games..."
