@@ -11,7 +11,7 @@ class Api::SessionsController < ApplicationController
     end
 
     def create
-        @user = User.find_by_credentials(session_params[:credential], session_params[:password])
+        @user = User.find_by_credentials(session_params[:credential].downcase, session_params[:password])
         if @user
           login!(@user)
           @teams = Team.all.includes(:home_games, :away_games)

@@ -57,13 +57,13 @@ const LoginForm = () => {
             if(!credential){
                 dispatch(storeErrors({errors:["Email can't be blank"]}));
             } else {
-                const user = {credential, password};
+                const user = {credential: credential.toLowerCase(), password};
                 dispatch(login(user));
             }
         } else if(formType==='signup'){
             const confirm = document.getElementById('ConfirmPassword');
             if(password === confirm.value){
-                const user = {firstName, lastName, email, password};
+                const user = {firstName, lastName, email: email.toLowerCase(), password};
                 dispatch(signup(user)).then(() => dispatch(login(user))).then(() => history.push('/account'));
             } else {
                 document.getElementById('confirmError').style.display = "block";
