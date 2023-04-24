@@ -25,7 +25,7 @@ const Requests = ({team}) => {
                             < RequestListItem key={request} user={users[request]} team={team} />
                         )
                     default:
-                        break;
+                        return <p>No requests.</p>
                 }
             })}
         </ol>

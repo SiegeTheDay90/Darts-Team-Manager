@@ -22,7 +22,7 @@ const NextGame = ({game}) => {
                 }
             }()
         )
-    }, [game])
+    }, [sessionUser?.id, game])
 
     if(!game){
         return <h1>Loading...</h1>

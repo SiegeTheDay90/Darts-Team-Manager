@@ -22,6 +22,8 @@ const ManagerView = () => {
                 </h2>
             </>
             )
+        default:
+            return <p>None</p>
     }
 
 }

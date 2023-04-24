@@ -8,7 +8,7 @@ const Account = () => {
 
     switch(!!sessionUser){
         case false:
-            return <p>Loading...</p>
+            return <Redirect to="/"></Redirect>
 
         case true:
             return (
@@ -20,6 +20,9 @@ const Account = () => {
                     <TeamSelect />
                 </>
             )
+
+        default:
+            return <p>None</p>
     }
 
 }

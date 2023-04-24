@@ -12,7 +12,7 @@ const Navigation = () => {
 
   useEffect(() => {
     dispatch(restoreSession())
-  }, [])
+  }, [dispatch])
 
   const session = useSelector(state => state.session)  
   return (
