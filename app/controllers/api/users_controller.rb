@@ -75,7 +75,7 @@ class Api::UsersController < ApplicationController
     end
   end
 
-  def reset
+  def reset_password
     confirm = Confirmation.find_by(code: params[:credential])
     
     if confirm

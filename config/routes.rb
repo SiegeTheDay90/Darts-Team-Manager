@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   namespace :api do  
     resources :users
     patch "/games/:id/reserve/", to: "games#reserve"
-    patch "/reset", to: "users#reset"
+    patch "/reset", to: "users#reset_password"
     post "/reset", to: "users#request_reset"
     patch "/memberAdd", to: "users#add_to_team"
     patch "/requestAdd", to: "teams#add_request"

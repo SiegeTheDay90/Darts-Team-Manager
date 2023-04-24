@@ -14,4 +14,14 @@ class UserMailer < ApplicationMailer
             mail(to:@user.email, subject: 'Reset Password')
         end
     end
+
+    def add
+        @user = params[:user]
+        @team = params[:team]
+        @url = 'https://team-connect.herokuapp.com/myteams'
+
+        if @user && @team
+            mail(to:@user.email, subject: `Request Accepted: #{@team.name}`)
+        end
+    end
 end
