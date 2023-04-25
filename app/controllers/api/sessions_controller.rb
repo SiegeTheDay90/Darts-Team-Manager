@@ -11,7 +11,6 @@ class Api::SessionsController < ApplicationController
     end
 
     def create
-      debugger
         @user = User.find_by_credentials(session_params[:credential].downcase, session_params[:password])
         if @user
           login!(@user)
