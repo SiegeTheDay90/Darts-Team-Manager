@@ -11,7 +11,7 @@ const TeamSelect = () => {
     const dispatch = useDispatch();
     const history = useHistory();
     const sessionUser = useSelector(state => state.session.user);
-    const sessionUserTeam = useSelector(state => state.teams[state.session.user?.id]);
+    const sessionUserTeam = useSelector(state => state.teams[state.session.user?.teamId]);
     const teams = useSelector(state => state.teams);
     const [chosen, setChosen] = useState(sessionUserTeam?.id);   
 

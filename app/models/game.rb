@@ -25,14 +25,14 @@ class Game < ApplicationRecord
     has_one(
         :away_team,
         class_name: 'Team',
-        foreign_key: 'id',
+        foreign_key: 'away_team_id',
         primary_key: 'id'
     )
 
     has_one(
         :home_team,
         class_name: 'Team',
-        foreign_key: 'id',
+        foreign_key: 'home_team_id',
         primary_key: 'id'
     )
 
