@@ -66,6 +66,7 @@ class Api::UsersController < ApplicationController
       @user.team_id = @team.id
       @team.requested.delete(@user.id)
       if @user.save && @team.save
+        UserMailer.with(user: @user, team: @team).add.deliver_now
         render :show
       else
         render json: {errors: @user.errors.full_messages+@team.errors.full_messages}, status: 422
