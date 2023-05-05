@@ -1,19 +1,5 @@
 # Darts-Team-Manager
 
-## MVPs
-
-### User-Auth
-<ul>
-  <li>Managers can Log In to create/edit rosters</li>
-</ul>
-
-### Player-View
-<ul>
-  <li>Successful Login/Signup redirects to MyTeam page.</li>
-  <li>MyTeam page shows current wins, losses, schedule, & NextGame</li>
-  <li>NextGame has a list of play-slots. Users can click play-slots to reserve. Users can also queue up for a play-slot thati s already reserved.
-</ul>
-
 ## Database Schema
 ### `users`
 | column name       | data type | details                   |
@@ -37,7 +23,7 @@
 |:---------------------|:---------:|:-------------------------------|
 | `id`                 | integer   | not null, primary key          |
 | `name`               | string    | not null                       |
-| `sponsor`            | string    | not null                       |
+| `sponsor_id`         | integer   | not null                       |
 | `wins`               | integer   | not null, default: 0           |
 | `losses`             | integer   | not null, default: 0           |
 | `draws`              | integer   | not null, default: 0           |
@@ -48,3 +34,46 @@
 + index on `manager_id`
 + `belongs_to manager`
 + `has_many players`
+
+### `games`
+| column name          | data type | details                        |
+|:---------------------|:---------:|:-------------------------------|
+| `id`                 | integer   | not null, primary key          |
+| `date`               | date      | not null                       |
+| `home_team_id`         | integer   | not null                       |
+| `away_team_id`               | integer   | not null, default: 0           |
+| `score`             | string   |           |
+| `reserved`              | integer   | default: [], is an Array           |
+| `venue_id`              | integer   |           |
+| `created_at`         | datetime  | not null                       |
+| `updated_at`         | datetime  | not null                       |
+
++ `home_team_id` and `away_team_id` reference `teams`
++ `venue_id` references `tables`
++ `winning_team_id` references `teams`
+
+### `venues`
+| column name          | data type | details                        |
+|:---------------------|:---------:|:-------------------------------|
+| `id`                 | integer   | not null, primary key          |
+| `address`               | string      | default: "Unlisted"       |
+| `name`         | string   | not null                       |
+| `lat`               | float   | not null           |
+| `lng`             | float   |  not null  |
+| `created_at`         | datetime  | not null                       |
+| `updated_at`         | datetime  | not null                       |
+
++ `has_many teams`
++ `has_many games`
+
+### `confirmations`
+| column name          | data type | details                        |
+|:---------------------|:---------:|:-------------------------------|
+| `id`                 | integer   | not null, primary key          |
+| `code`               | string      | not null       |
+| `user_id`         | integer   | not null                       |
+| `confirmed`               | boolean   | default: FALSE           |
+| `created_at`         | datetime  | not null                       |
+| `updated_at`         | datetime  | not null                       |
+
++ `belongs_to user`
