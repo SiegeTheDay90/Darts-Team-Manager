@@ -124,7 +124,7 @@ ApplicationRecord.transaction do
         winning_team_id: nil,
         score: nil,
         venue_id: Team.find(1).sponsor_id,
-        reserved: Team.first.players.pluck(:id).sample(3)
+        reserved: Team.first.players.pluck(:id).sample(5)
     })
     Game.create!({
         date: Faker::Date.between(from: 1.months.ago, to: Date.today),
@@ -133,7 +133,7 @@ ApplicationRecord.transaction do
         winning_team_id: nil,
         score: nil,
         venue_id: Team.find(2).sponsor_id,
-        reserved: Team.second.players.pluck(:id).sample(5).map{|id| [id, -id].sample}
+        reserved: Team.first.players.pluck(:id).sample(5).map{|id| [id, -id].sample}
     })
     Game.create!({
         date: Faker::Date.between(from: 1.months.ago, to: Date.today),
@@ -142,7 +142,7 @@ ApplicationRecord.transaction do
         winning_team_id: nil,
         score: nil,
         venue_id: Team.find(3).sponsor_id,
-        reserved: Team.second.players.pluck(:id).sample(5).map{|id| [id, -id].sample}
+        reserved: Team.first.players.pluck(:id).sample(5).map{|id| [id, -id].sample}
     })
     Game.create!({
         date: Faker::Date.between(from: 1.months.ago, to: Date.today),
@@ -151,7 +151,16 @@ ApplicationRecord.transaction do
         winning_team_id: nil,
         score: nil,
         venue_id: Team.find(2).sponsor_id,
-        reserved: Team.second.players.pluck(:id).sample(5).map{|id| [id, -id].sample}
+        reserved: Team.first.players.pluck(:id).sample(5).map{|id| [id, -id].sample}
+    })
+    Game.create!({
+        date: Faker::Date.between(from: 1.months.ago, to: Date.today),
+        home_team_id: 1,
+        away_team_id: 2,
+        winning_team_id: nil,
+        score: nil,
+        venue_id: Team.find(1).sponsor_id,
+        reserved: Team.first.players.pluck(:id).sample(5).map{|id| [id, -id].sample}
     })
     Game.create!({
         date: Faker::Date.between(from: 1.months.ago, to: Date.today),
