@@ -22,6 +22,7 @@ if (process.env.NODE_ENV !== 'production') {
 
 
 function Root() {
+  console.log(process.env);
   return (
     <Provider store={store}>
       <BrowserRouter>
@@ -35,9 +36,7 @@ function Root() {
 
 const renderApp = () => {
   root.render(
-    // <React.StrictMode>
       <Root />
-    // </React.StrictMode>
   );
 
 }
