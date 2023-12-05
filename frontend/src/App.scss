@@ -12,6 +12,13 @@ $eggshell:rgb(255, 242, 219) ;
     max-width: 500px;
 }
 
+#root{
+    max-width: 100vw;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgb(5, 28, 0);
+}
+
 .App {
     font-size: 18px;
     font-family: Helvetica;
@@ -22,6 +29,9 @@ $eggshell:rgb(255, 242, 219) ;
     width: 100vw;
     height: 100%;
     background-color: $eggshell;
+}
+#App{
+    margin: 0 auto;
 }
 
 .detail {

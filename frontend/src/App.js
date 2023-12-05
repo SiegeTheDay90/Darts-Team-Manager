@@ -9,6 +9,8 @@ import RequestReset from './components/Forms/ResetPassword/RequestReset';
 import Account from './pages/Account/Account';
 import NotFound from './pages/NotFound/NotFound';
 import ManagerView from './pages/ManagerView/ManagerView';
+import GamePage from './pages/GamePage/GamePage.jsx';
+import GameIndex from './pages/GameIndex/GameIndex.jsx';
 
 
 
@@ -41,6 +43,12 @@ function App() {
       </Route>
       <Route path="/account">
         <Account />
+      </Route>
+      <Route path="/games/:gameId">
+        <GamePage />
+      </Route>
+      <Route path="/games">
+        <GameIndex />
       </Route>
       <Route path="*" component={NotFound} />
     </Switch>

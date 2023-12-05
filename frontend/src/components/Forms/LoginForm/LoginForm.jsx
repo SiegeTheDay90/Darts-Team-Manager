@@ -48,6 +48,7 @@ const LoginForm = () => {
                 inputField.style.background = "#ffdddd";
                 inputField.style.border = "1px solid #bb0000";
             }
+            storeErrors([]);
         }
     }, [errors]);
 
