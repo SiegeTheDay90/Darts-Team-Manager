@@ -1,10 +1,11 @@
 import { useDispatch } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import { logout } from '../../store/session.js';
 import './Info.scss';
 
 const SessionInfo = ({session}) => {
     const dispatch = useDispatch();
+    const history = useHistory();
 
     const sessionUser = session.user;
 
@@ -16,7 +17,9 @@ const SessionInfo = ({session}) => {
 
     const logoutClick = (e) => {
         e.preventDefault();
-        dispatch(logout());
+        dispatch(logout()).then(() => {
+            history.push("/");
+        });
     }
     
     return(
