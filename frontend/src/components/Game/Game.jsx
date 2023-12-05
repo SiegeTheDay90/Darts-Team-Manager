@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { reserveGame } from '../../store/games';
 import './Game.scss';
 
-const NextGame = ({game}) => {
+const NextGame = ({game, next}) => {
     const dispatch = useDispatch();
     const sessionUser = useSelector(state => state.session.user);
     const [attClass, setAttClass] = useState("none")
@@ -39,7 +39,7 @@ const NextGame = ({game}) => {
     return (
         <div className="form checkin">
             <div className="checkin-header">
-                <h2 style={{marginBottom: "7px", fontWeight: "bolder"}}>Game</h2>
+                <h2 style={{marginBottom: "7px", fontWeight: "bolder"}}>{next ? "Next " : ""}Game</h2>
                 <h2>{away?.name} @ {home.name}</h2>
                 <span className="detail">{month} {day}, {year}</span>
             </div>

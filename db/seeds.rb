@@ -64,8 +64,8 @@ ApplicationRecord.transaction do
         team_id: 1
     })
 
-    puts"Creating 23 users..."
-    (1..23).each do |i|
+    puts"Creating 31 users..."
+    (1..31).each do |i|
         User.create!({
             first_name: Faker::Name.first_name,
             last_name: Faker::Name.last_name,
@@ -133,7 +133,16 @@ ApplicationRecord.transaction do
         winning_team_id: nil,
         score: nil,
         venue_id: Team.find(2).sponsor_id,
-        reserved: Team.second.players.pluck(:id).sample(3)
+        reserved: Team.second.players.pluck(:id).sample(5).map{|id| [id, -id].sample}
+    })
+    Game.create!({
+        date: Faker::Date.between(from: 1.months.ago, to: Date.today),
+        home_team_id: 3,
+        away_team_id: 2,
+        winning_team_id: nil,
+        score: nil,
+        venue_id: Team.find(3).sponsor_id,
+        reserved: Team.second.players.pluck(:id).sample(5).map{|id| [id, -id].sample}
     })
     Game.create!({
         date: Faker::Date.between(from: 1.months.ago, to: Date.today),
@@ -142,7 +151,7 @@ ApplicationRecord.transaction do
         winning_team_id: nil,
         score: nil,
         venue_id: Team.find(2).sponsor_id,
-        reserved: Team.second.players.pluck(:id).sample(3)
+        reserved: Team.second.players.pluck(:id).sample(5).map{|id| [id, -id].sample}
     })
     Game.create!({
         date: Faker::Date.between(from: 1.months.ago, to: Date.today),

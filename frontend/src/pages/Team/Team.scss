@@ -4,11 +4,16 @@
     align-self: flex-start;
     margin: 3% 0 0 5%;
     width: 50%;
-    overflow: hidden;
+    overflow-y: hidden;
+    display: flex;
+    flex-direction: column;
+    #list-container{
+        overflow-y: scroll;
+    }
     .record {
         display: block;
         padding-bottom: 5px;
-        width:fit-content;
+        width: fit-content;
     }
     li {
         margin-top: 5px;
@@ -17,8 +22,20 @@
         padding-left: 10px;
         font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     }
-    #members-list {
+    #members-list[open] {
         display: block;
+        overflow-y: scroll;
+        // max-height: 4em;
+        width: max-content;
+        summary{
+            position: sticky;
+            top: 0;
+            background-color: $eggshell;
+        }
+        p{
+            font-size: smaller;
+            margin: 0.5em 0;
+        }
     }
 }
 

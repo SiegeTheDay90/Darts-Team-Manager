@@ -13,7 +13,7 @@
     }
 
     .caption {
-        padding-top: 7px;
+        margin: auto 0;
         font-size: 12px;
         width: 100px;
     }
@@ -25,8 +25,9 @@
     }
 
    .attendance-button{
-        height: 50px;
-        width: 120px;
+        height: 40px;
+        width: 80px;
+        border-radius: 5px;
         cursor: pointer;
         display: flex;
         justify-content: center;
@@ -38,6 +39,7 @@
         background-color: $light-green;
         &::after {
             content: "You're in!";
+            text-align: center;
         }
     }
 

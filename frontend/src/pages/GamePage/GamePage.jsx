@@ -34,7 +34,7 @@ const GamePage = () => {
         <>
             <div className="main-header">
                 <h2>{team?.name || `Team Not Found for ${sessionUser?.firstName}`}</h2>
-                {/* <span className="detail record">{team?.wins}W - {team?.losses}L - {team?.draws}D</span> */}
+                <span className="detail record">{team?.wins}W - {team?.losses}L - {team?.draws}D</span>
                 <details id="members-list"><summary>Members</summary>
                     {Object.values(users).filter((user) => user.teamId === team.id).map((user) => (
                         <li key={user.id}>{user.firstName +" "+user.lastName[0]+"."} <i className={res_status(user.id)}></i></li>
