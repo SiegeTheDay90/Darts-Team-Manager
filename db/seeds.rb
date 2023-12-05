@@ -116,14 +116,41 @@ ApplicationRecord.transaction do
         home.save!
         away.save!
     end
-    puts "Creating a future game..."
+    puts "Creating a future games..."
     Game.create!({
-        date: Date.new(2023, 12, 25),
+        date: Faker::Date.between(from: Date.tomorrow + 30, to: Date.tomorrow + 90),
         home_team_id: 1,
         away_team_id: 3,
         winning_team_id: nil,
         score: nil,
-        venue_id: Team.find(1).sponsor_id
+        venue_id: Team.find(1).sponsor_id,
+        reserved: Team.first.players.pluck(:id).sample(3)
+    })
+    Game.create!({
+        date: Faker::Date.between(from: 1.months.ago, to: Date.today),
+        home_team_id: 2,
+        away_team_id: 4,
+        winning_team_id: nil,
+        score: nil,
+        venue_id: Team.find(2).sponsor_id,
+        reserved: Team.second.players.pluck(:id).sample(3)
+    })
+    Game.create!({
+        date: Faker::Date.between(from: 1.months.ago, to: Date.today),
+        home_team_id: 2,
+        away_team_id: 1,
+        winning_team_id: nil,
+        score: nil,
+        venue_id: Team.find(2).sponsor_id,
+        reserved: Team.second.players.pluck(:id).sample(3)
+    })
+    Game.create!({
+        date: Faker::Date.between(from: 1.months.ago, to: Date.today),
+        home_team_id: 4,
+        away_team_id: 3,
+        winning_team_id: nil,
+        score: nil,
+        venue_id: Team.find(4).sponsor_id
     })
 
     puts "Running Tests..."

@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useState, useEffect } from 'react';
 import { reserveGame } from '../../store/games';
-import './NextGame.scss';
+import './Game.scss';
 
 const NextGame = ({game}) => {
     const dispatch = useDispatch();
@@ -39,6 +39,7 @@ const NextGame = ({game}) => {
     return (
         <div className="form checkin">
             <div className="checkin-header">
+                <h2 style={{marginBottom: "7px", fontWeight: "bolder"}}>Game</h2>
                 <h2>{away?.name} @ {home.name}</h2>
                 <span className="detail">{month} {day}, {year}</span>
             </div>

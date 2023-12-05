@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { storeErrors } from '../../../store/errors.js';
+import { storeErrors, setErrors } from '../../../store/errors.js';
 import { resetPassword } from '../../../store/session.js';
 import '../Form.scss';
 
@@ -35,6 +35,7 @@ const ResetPassword = () => {
                 inputField.style.background = "#ffdddd";
                 inputField.style.border = "1px solid #bb0000";
             }
+            storeErrors([]);
         }
     }, [errors]);
 

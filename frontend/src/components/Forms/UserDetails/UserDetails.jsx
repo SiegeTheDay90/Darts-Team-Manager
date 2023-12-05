@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { storeErrors, setErrors } from '../../../store/errors.js';
 import { updateUser } from '../../../store/users';
 import './UserDetail.scss';
 import '../Form.scss';
@@ -40,6 +41,8 @@ const UserDetails = () => {
                 inputField.style.background = "#ffdddd";
                 inputField.style.border = "1px solid #bb0000";
             }
+            storeErrors([])
+        
         }
     }, [errors]);
 
